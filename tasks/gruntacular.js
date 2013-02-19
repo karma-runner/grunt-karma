@@ -12,15 +12,22 @@ var server = require('testacular').server;
 module.exports = function(grunt) {
   grunt.registerMultiTask('testacular', 'run testacular.', function() {
     var done = this.async();
-    if (this.data.configFile) {
-      this.data.configFile = grunt.template.process(this.data.configFile);
+    var options = this.options();
+    var data = this.data;
+    //merge options onto data, with data taking precedence
+    Object.keys(this.options()).forEach(function(prop){
+      if (!data[prop]) data[prop] = options[prop];
+    });
+
+    if (data.configFile) {
+      data.configFile = grunt.template.process(data.configFile);
     }
     //support `testacular run`, useful for grunt watch
     if (this.flags.run){
-      runner.run(this.data, finished.bind(done));
+      runner.run(data, finished.bind(done));
       return;
     }
-    server.start(this.data, finished.bind(done));
+    server.start(data, finished.bind(done));
   });
 };
 

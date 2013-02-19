@@ -11,14 +11,15 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     testacular: {
-      continuous: {
+      options: {
         configFile: 'testacular.conf.js',
-        singleRun: true,
         browsers: ['Chrome']
       },
+      continuous: {
+        singleRun: true
+      },
       dev: {
-        configFile: 'testacular.conf.js',
-        browsers: ['Chrome']
+        reporters: 'dots'
       }
     }
   });

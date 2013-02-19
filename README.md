@@ -37,6 +37,28 @@ testacular: {
 }
 ```
 
+##Sharing Configs
+If you have multiple targets, it may be helpful to share common configuration settings between them. Gruntacular supports this by using the `options` property:
+
+```js
+testacular: {
+  options: {
+    configFile: 'testacular.conf.js',
+    runnerPort: 9999,
+    browsers: ['Chrome', 'Firefox']
+  },
+  continuous: {
+    singleRun: true
+    browsers: ['PhantomJS']
+  },
+  dev: {
+    reporters: 'dots'
+  }
+}
+```
+
+In this example the `continuous` and `dev` targets will both use the `configFile` and `runnerPort` specified in the `options`. But the `continuous` target will override the browser setting to use PhantomJS, and also run as a singleRun. The `dev` target will simply change the reporter to dots.
+
 ##Running tests
 There are three ways to run your tests with testacular:
 
