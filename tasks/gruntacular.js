@@ -1,3 +1,11 @@
+/*
+ * gruntacular
+ * https://github.com/OpenWebStack/gruntacular
+ *
+ * Copyright (c) 2013 Dave Geddes
+ * Licensed under the MIT license.
+ */
+
 var runner = require('testacular').runner;
 var server = require('testacular').server;
 
