@@ -25,7 +25,8 @@
   },
   "devDependencies": {
     "grunt": "~0.4.0",
-    "expect.js": "~0.2.0"
+    "expect.js": "~0.2.0",
+    "grunt-release": "~0.2.0"
   },
   "peerDependencies": {
     "grunt": "0.4.x"
