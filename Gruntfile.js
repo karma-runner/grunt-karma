@@ -10,6 +10,7 @@
 
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-release');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   
   grunt.initConfig({
     testacular: {
@@ -22,6 +23,13 @@ module.exports = function(grunt) {
       },
       dev: {
         reporters: 'dots'
+      }
+    },
+
+    watch: {
+      tests: {
+        files: 'test/**/*.js',
+        tasks: ['testacular:dev:run']
       }
     }
   });
