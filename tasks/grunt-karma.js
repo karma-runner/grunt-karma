@@ -1,16 +1,16 @@
 /*
- * gruntacular
- * https://github.com/OpenWebStack/gruntacular
+ * grunt-karma
+ * https://github.com/karma/grunt-karma
  *
  * Copyright (c) 2013 Dave Geddes
  * Licensed under the MIT license.
  */
 
-var runner = require('testacular').runner;
-var server = require('testacular').server;
+var runner = require('karma').runner;
+var server = require('karma').server;
 
 module.exports = function(grunt) {
-  grunt.registerMultiTask('testacular', 'run testacular.', function() {
+  grunt.registerMultiTask('karma', 'run karma.', function() {
     var done = this.async();
     var options = this.options();
     var data = this.data;
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
     if (data.configFile) {
       data.configFile = grunt.template.process(data.configFile);
     }
-    //support `testacular run`, useful for grunt watch
+    //support `karma run`, useful for grunt watch
     if (this.flags.run){
       runner.run(data, finished.bind(done));
       return;
