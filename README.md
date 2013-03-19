@@ -1,25 +1,25 @@
-#gruntacular
-Grunt plugin for [Testacular](http://vojtajina.github.com/testacular/)
+#grunt-karma
+Grunt plugin for [Karma](https://github.com/karma-runner/karma)
 NOTE: this plugin requires Grunt 0.4.x
 
 ##Getting Started
 From the same directory as your project's Gruntfile and package.json, install this plugin with the following command:
 
-`npm install gruntacular --save-dev`
+`npm install grunt-karma --save-dev`
 
 Once that's done, add this line to your project's Gruntfile:
 
 ```js
-grunt.loadNpmTasks('gruntacular');
+grunt.loadNpmTasks('grunt-karma');
 ```
 
 ##Config
-Inside your `Gruntfile.js` file, add a section named *testacular*, containing any number of configurations for running testacular. The only required option is the path to the [testacular config file](https://github.com/vojtajina/testacular/wiki/Configuration-File-Overview). Here's a simple example:
+Inside your `Gruntfile.js` file, add a section named *karma*, containing any number of configurations for running karma. The only required option is the path to the [karma config file](http://karma-runner.github.com/0.8/config/configuration-file.html). Here's a simple example:
 
 ```js
-testacular: {
+karma: {
   unit: {
-    configFile: 'testacular.conf.js'
+    configFile: 'karma.conf.js'
   }
 }
 ```
@@ -27,9 +27,9 @@ testacular: {
 You can override any of the config file's settings directly:
 
 ```js
-testacular: {
+karma: {
   unit: {
-    configFile: 'testacular.conf.js',
+    configFile: 'karma.conf.js',
     runnerPort: 9999,
     singleRun: true,
     browsers: ['PhantomJS']
@@ -38,12 +38,12 @@ testacular: {
 ```
 
 ##Sharing Configs
-If you have multiple targets, it may be helpful to share common configuration settings between them. Gruntacular supports this by using the `options` property:
+If you have multiple targets, it may be helpful to share common configuration settings between them. Grunt-karma supports this by using the `options` property:
 
 ```js
-testacular: {
+karma: {
   options: {
-    configFile: 'testacular.conf.js',
+    configFile: 'karma.conf.js',
     runnerPort: 9999,
     browsers: ['Chrome', 'Firefox']
   },
@@ -60,66 +60,66 @@ testacular: {
 In this example the `continuous` and `dev` targets will both use the `configFile` and `runnerPort` specified in the `options`. But the `continuous` target will override the browser setting to use PhantomJS, and also run as a singleRun. The `dev` target will simply change the reporter to dots.
 
 ##Running tests
-There are three ways to run your tests with testacular:
+There are three ways to run your tests with karma:
 
-###Testacular Server with Auto Runs on File Change
-Setting the `autoWatch` option to true will instruct testacular to start a server and watch for changes to files, running tests automatically:
+###Karma Server with Auto Runs on File Change
+Setting the `autoWatch` option to true will instruct karma to start a server and watch for changes to files, running tests automatically:
 
 ```js
-testacular: {
+karma: {
   unit: {
-    configFile: 'testacular.conf.js',
+    configFile: 'karma.conf.js',
     autoWatch: true
   }
 }
 ```
-Now run `$ grunt testacular`
+Now run `$ grunt karma`
 
-However, usually Grunt projects watch many types of files using [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch), so this option isn't preferred. 
+However, usually Grunt projects watch many types of files using [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) or [grunt-regarde](https://github.com/yeoman/grunt-regarde), so this option isn't preferred. 
 
-###Testacular Server with Grunt Watch
-Config testacular like usual (without the autoWatch option):
+###Karma Server with Grunt Watch/Regarde
+Config karma like usual (without the autoWatch option):
 
 ```js
-testacular: {
+karma: {
   unit: {
-    configFile: 'testacular.conf.js'
+    configFile: 'karma.conf.js'
   }
 }
 ```
 
-Config your `watch` task to run the testacular task with the `:run` flag. For example:
+Config your `watch` or `regarde` task to run the karma task with the `:run` flag. For example:
 
 ```js
 watch: {
-  //run unit tests with testacular (server needs to be already running)
-  testacular: {
+  //run unit tests with karma (server needs to be already running)
+  karma: {
     files: ['app/js/**/*.js', 'test/browser/**/*.js'],
-    tasks: ['testacular:unit:run'] //NOTE the :run flag
+    tasks: ['karma:unit:run'] //NOTE the :run flag
   }
 },
 ```
 
-In one terminal window start the testacular server by running `$ grunt testacular`. In another terminal window start grunt watch by running `$ grunt watch`. Now when grunt watch detects a change to one of those files, it will run the testacular tests using the already running testacular server. This is the preferred method for development.  
+In one terminal window start the karma server by running `$ grunt karma:unit`. In another terminal window start grunt watch by running `$ grunt watch`. Now when grunt watch detects a change to one of those files, it will run the tests specified in the `unit` target using the already running karma server. This is the preferred method for development.  
 
 ###Single Run
-Keeping a browser window & testacular server running during development is productive, but not a good solution for build processes. For that reason testacular provides a "continuous integration" mode, which will launch the specified browser(s), run the tests, and close the browser(s). It also supports running tests in [PhantomJS](http://phantomjs.org/), a headless webkit browser which is great for running tests as part of a build. To run tests in continous integration mode just add the `singleRun` option:
+Keeping a browser window & karma server running during development is productive, but not a good solution for build processes. For that reason karma provides a "continuous integration" mode, which will launch the specified browser(s), run the tests, and close the browser(s). It also supports running tests in [PhantomJS](http://phantomjs.org/), a headless webkit browser which is great for running tests as part of a build. To run tests in continous integration mode just add the `singleRun` option:
 
 ```js
-testacular: {
+karma: {
   unit: {
-    configFile: 'config/testacular.conf.js',
+    configFile: 'config/karma.conf.js',
   },
   //continuous integration mode: run tests once in PhantomJS browser.
   continuous: {
-    configFile: 'config/testacular.conf.js',
+    configFile: 'config/karma.conf.js',
     singleRun: true,
     browsers: ['PhantomJS']
   },
 }
 ```
 
-The build would then run `grunt testacular:continuous` to start PhantomJS, run tests, and close PhantomJS.
+The build would then run `grunt karma:continuous` to start PhantomJS, run tests, and close PhantomJS.
 
 ##License
 MIT License

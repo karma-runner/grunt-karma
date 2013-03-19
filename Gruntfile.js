@@ -1,11 +1,3 @@
-/*
- * gruntacular
- * https://github.com/OpenWebStack/gruntacular
- *
- * Copyright (c) 2013 Dave Geddes
- * Licensed under the MIT license.
- */
-
 'use strict';
 
 module.exports = function(grunt) {
@@ -13,9 +5,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   
   grunt.initConfig({
-    testacular: {
+    karma: {
       options: {
-        configFile: 'testacular.conf.js',
+        configFile: 'karma.conf.js',
         browsers: ['Chrome']
       },
       continuous: {
@@ -29,13 +21,13 @@ module.exports = function(grunt) {
     watch: {
       tests: {
         files: 'test/**/*.js',
-        tasks: ['testacular:dev:run']
+        tasks: ['karma:dev:run']
       }
     }
   });
 
-  //Load gruntacular plugin
+  //Load karma plugin
   grunt.loadTasks('tasks');
 
-  grunt.registerTask('test', ['testacular:continuous']);
+  grunt.registerTask('test', ['karma:continuous']);
 };
