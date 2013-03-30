@@ -14,7 +14,9 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask('karma', 'run karma.', function() {
     var done = this.async();
-    var options = this.options();
+    var options = this.options({
+      keepalive: true
+    });
     var data = this.data;
     //merge options onto data, with data taking precedence
     data = _.merge(options, data);
@@ -28,6 +30,9 @@ module.exports = function(grunt) {
       return;
     }
     server.start(data, finished.bind(done));
+    if (! data.keepalive) {
+      done();
+    }
   });
 };
 

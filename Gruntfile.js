@@ -3,7 +3,7 @@
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-release');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  
+
   grunt.initConfig({
     karma: {
       options: {
@@ -15,6 +15,9 @@ module.exports = function(grunt) {
       },
       dev: {
         reporters: 'dots'
+      },
+      watch: {
+        keepalive: false
       }
     },
 
