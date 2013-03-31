@@ -8,13 +8,16 @@
 
 var runner = require('karma').runner;
 var server = require('karma').server;
+var spawn = require('child_process').spawn;
 
 module.exports = function(grunt) {
   var _ = grunt.util._;
 
   grunt.registerMultiTask('karma', 'run karma.', function() {
     var done = this.async();
-    var options = this.options();
+    var options = this.options({
+      background: false
+    });
     var data = this.data;
     //merge options onto data, with data taking precedence
     data = _.merge(options, data);
@@ -27,7 +30,14 @@ module.exports = function(grunt) {
       runner.run(data, finished.bind(done));
       return;
     }
-    server.start(data, finished.bind(done));
+    //allow karma to be run in the background so it doesn't block grunt
+    if (this.data.background){
+      var ps = spawn('node', ['lib/background.js', JSON.stringify(data)]);
+      done();
+    }
+    else {
+      server.start(data, finished.bind(done));  
+    }
   });
 };
 
