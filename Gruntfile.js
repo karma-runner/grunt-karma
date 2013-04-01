@@ -14,7 +14,8 @@ module.exports = function(grunt) {
         singleRun: true
       },
       dev: {
-        reporters: 'dots'
+        reporters: 'dots',
+        background: true
       }
     },
 
