@@ -75,18 +75,20 @@ karma: {
 ```
 Now run `$ grunt karma`
 
-However, usually Grunt projects watch many types of files using [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) or [grunt-regarde](https://github.com/yeoman/grunt-regarde), so this option isn't preferred. 
+However, usually Grunt projects watch many types of files using [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) or [grunt-regarde](https://github.com/yeoman/grunt-regarde), so this option isn't preferred.
 
 ###Karma Server with Grunt Watch/Regarde
-Config karma like usual (without the autoWatch option):
+Config karma like usual (without the autoWatch option), and add `background:true`:
 
 ```js
 karma: {
   unit: {
-    configFile: 'karma.conf.js'
+    configFile: 'karma.conf.js',
+    background: true
   }
 }
 ```
+The `background` option will tell grunt to run karma in a child process so it doesn't block subsequent grunt tasks.
 
 Config your `watch` or `regarde` task to run the karma task with the `:run` flag. For example:
 
@@ -100,7 +102,7 @@ watch: {
 },
 ```
 
-In one terminal window start the karma server by running `$ grunt karma:unit`. In another terminal window start grunt watch by running `$ grunt watch`. Now when grunt watch detects a change to one of those files, it will run the tests specified in the `unit` target using the already running karma server. This is the preferred method for development.  
+In your terminal window run `$ grunt karma:unit watch`, which runs both the karma task and the watch task. Now when grunt watch detects a change to one of your watched files, it will run the tests specified in the `unit` target using the already running karma server. This is the preferred method for development.
 
 ###Single Run
 Keeping a browser window & karma server running during development is productive, but not a good solution for build processes. For that reason karma provides a "continuous integration" mode, which will launch the specified browser(s), run the tests, and close the browser(s). It also supports running tests in [PhantomJS](http://phantomjs.org/), a headless webkit browser which is great for running tests as part of a build. To run tests in continous integration mode just add the `singleRun` option:
