@@ -8,7 +8,6 @@
 
 var runner = require('karma').runner;
 var server = require('karma').server;
-var spawn = require('child_process').spawn;
 
 module.exports = function(grunt) {
   var _ = grunt.util._;
@@ -32,7 +31,7 @@ module.exports = function(grunt) {
     }
     //allow karma to be run in the background so it doesn't block grunt
     if (this.data.background){
-      var ps = spawn('node', ['lib/background.js', JSON.stringify(data)]);
+      grunt.util.spawn({cmd: 'node', args: ['lib/background.js', JSON.stringify(data)]});
       done();
     }
     else {
