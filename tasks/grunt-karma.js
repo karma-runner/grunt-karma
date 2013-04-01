@@ -10,14 +10,16 @@ var runner = require('karma').runner;
 var server = require('karma').server;
 
 module.exports = function(grunt) {
+  var _ = grunt.util._;
+
   grunt.registerMultiTask('karma', 'run karma.', function() {
     var done = this.async();
-    var options = this.options();
+    var options = this.options({
+      background: false
+    });
     var data = this.data;
     //merge options onto data, with data taking precedence
-    Object.keys(this.options()).forEach(function(prop){
-      if (!data[prop]) data[prop] = options[prop];
-    });
+    data = _.merge(options, data);
 
     if (data.configFile) {
       data.configFile = grunt.template.process(data.configFile);
@@ -27,7 +29,14 @@ module.exports = function(grunt) {
       runner.run(data, finished.bind(done));
       return;
     }
-    server.start(data, finished.bind(done));
+    //allow karma to be run in the background so it doesn't block grunt
+    if (this.data.background){
+      grunt.util.spawn({cmd: 'node', args: ['lib/background.js', JSON.stringify(data)]});
+      done();
+    }
+    else {
+      server.start(data, finished.bind(done));  
+    }
   });
 };
 
