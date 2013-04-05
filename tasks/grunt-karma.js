@@ -8,6 +8,7 @@
 
 var runner = require('karma').runner;
 var server = require('karma').server;
+var path = require('path');
 
 module.exports = function(grunt) {
   var _ = grunt.util._;
