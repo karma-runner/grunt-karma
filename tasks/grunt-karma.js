@@ -27,7 +27,7 @@ module.exports = function(grunt) {
     }
     //support `karma run`, useful for grunt watch
     if (this.flags.run){
-      runner.run(data, finished.bind(done));
+      runner.run(data, done);
       return;
     }
     //allow karma to be run in the background so it doesn't block grunt
