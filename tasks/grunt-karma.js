@@ -1,6 +1,6 @@
 /*
  * grunt-karma
- * https://github.com/karma/grunt-karma
+ * https://github.com/karma-runner/grunt-karma
  *
  * Copyright (c) 2013 Dave Geddes
  * Licensed under the MIT license.
