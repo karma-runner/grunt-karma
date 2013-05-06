@@ -3,8 +3,11 @@
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-release');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-conventional-changelog');
   
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+
     karma: {
       options: {
         configFile: 'karma.conf.js',
@@ -16,6 +19,12 @@ module.exports = function(grunt) {
       dev: {
         reporters: 'dots',
         background: true
+      }
+    },
+
+    changelog: {
+      options: {
+        dest: 'CHANGELOG.md'
       }
     },
 
