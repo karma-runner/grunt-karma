@@ -32,7 +32,7 @@ module.exports = function(grunt) {
       return;
     }
     //allow karma to be run in the background so it doesn't block grunt
-    if (this.data.background){
+    if (data.background){
       grunt.util.spawn({cmd: 'node', args: [path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(data)]}, function(){});
       done();
     }
