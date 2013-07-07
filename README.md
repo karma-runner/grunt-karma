@@ -48,7 +48,7 @@ karma: {
     browsers: ['Chrome', 'Firefox']
   },
   continuous: {
-    singleRun: true
+    singleRun: true,
     browsers: ['PhantomJS']
   },
   dev: {
