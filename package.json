@@ -31,7 +31,9 @@
     "grunt-release": "~0.2.0",
     "grunt-contrib-watch": "~0.2.0",
     "grunt-conventional-changelog": "0.0.12",
-    "karma-mocha": "~0.0.1"
+    "karma-mocha": "~0.0.1",
+    "karma-ng-html2js-preprocessor": "~0.0.1",
+    "karma-junit-reporter": "~0.0.1"
   },
   "peerDependencies": {
     "grunt": "0.4.x"
