@@ -22,7 +22,9 @@
   "author": "Dave Geddes",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "dependencies": {},
+  "dependencies": {
+    "optimist": "~0.6.0"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "expect.js": "~0.2.0",

@@ -23,6 +23,7 @@ module.exports = function(grunt) {
       },
       dev: {
         reporters: 'dots',
+        // clientArgs: ["--grep", true]
         background: true
       }
     },

@@ -9,6 +9,7 @@
 var runner = require('karma').runner;
 var server = require('karma').server;
 var path = require('path');
+var optimist = require('optimist');
 
 module.exports = function(grunt) {
   var _ = grunt.util._;
@@ -26,11 +27,16 @@ module.exports = function(grunt) {
       data.configFile = path.resolve(data.configFile);
       data.configFile = grunt.template.process(data.configFile);
     }
+
+    //pass cli args on as client args, for example --grep=x
+    data.clientArgs = require('optimist').argv;
+
     //support `karma run`, useful for grunt watch
     if (this.flags.run){
       runner.run(data, done);
       return;
     }
+    
     //allow karma to be run in the background so it doesn't block grunt
     if (data.background){
       grunt.util.spawn({cmd: 'node', args: [path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(data)]}, function(){});
