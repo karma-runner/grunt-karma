@@ -21,9 +21,9 @@ module.exports = function(grunt) {
     var data = this.data;
     //merge options onto data, with data taking precedence
     data = _.merge(options, data);
-    data.configFile = path.resolve(data.configFile);
 
     if (data.configFile) {
+      data.configFile = path.resolve(data.configFile);
       data.configFile = grunt.template.process(data.configFile);
     }
     //support `karma run`, useful for grunt watch
