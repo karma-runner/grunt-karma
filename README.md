@@ -14,7 +14,9 @@ grunt.loadNpmTasks('grunt-karma');
 ```
 
 ##Config
-Inside your `Gruntfile.js` file, add a section named *karma*, containing any number of configurations for running karma. The only required option is the path to the [karma config file](http://karma-runner.github.com/0.8/config/configuration-file.html). Here's a simple example:
+Inside your `Gruntfile.js` file, add a section named *karma*, containing any number of configurations for running karma. You can either put your config in a [karma config file](http://karma-runner.github.com/0.8/config/configuration-file.html) or leave it all in your Gruntfile (recommended). 
+
+###Here's an example that points to the config file:
 
 ```js
 karma: {
@@ -24,7 +26,19 @@ karma: {
 }
 ```
 
-You can override any of the config file's settings directly:
+###Here's an example that puts the config in the Gruntfile:
+
+```js
+karma: {
+  unit: {
+    options: {
+      files: ['test/**/*.js']
+    }
+  }
+}
+```
+
+You can override any of the config file's settings by putting them directly in the Gruntfile:
 
 ```js
 karma: {

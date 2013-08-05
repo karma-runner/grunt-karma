@@ -10,8 +10,13 @@ module.exports = function(grunt) {
 
     karma: {
       options: {
-        configFile: 'karma.conf.js',
-        browsers: ['Chrome']
+        browsers: ['Chrome'],
+        files: [
+          'node_modules/expect.js/expect.js',
+          'test/**/*.js'
+        ],
+        frameworks: ['mocha'],
+        plugins: ['karma-mocha', 'karma-chrome-launcher']
       },
       continuous: {
         singleRun: true
