@@ -137,5 +137,14 @@ karma: {
 
 The build would then run `grunt karma:continuous` to start PhantomJS, run tests, and close PhantomJS.
 
+##Grep / Passing Options to Karma Adapters
+Any cli args will be automatically parsed and sent on to adapters in the `config.args` property. So for example to use Mocha's useful `grep` feature, run grunt-karma like so: 
+
+```
+grunt karma:dev watch --grep=mypattern
+```
+
+Note that adapters like [karma-mocha](https://github.com/karma-runner/karma-mocha) have to support the args you're wanting to pass to them.
+
 ##License
 MIT License
