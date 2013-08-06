@@ -39,7 +39,14 @@ module.exports = function(grunt) {
         files: 'test/**/*.js',
         tasks: ['karma:dev:run']
       }
+    },
+
+    release: {
+      options: {
+        npmtag: true
+      }
     }
+
   });
 
   //Load karma plugin
