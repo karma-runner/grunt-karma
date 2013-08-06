@@ -35,6 +35,6 @@
   },
   "peerDependencies": {
     "grunt": "0.4.x",
-    "karma": "~0.9.4 || ~0.10"
+    "karma": "~0.10.0"
   }
 }
