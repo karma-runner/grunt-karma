@@ -7,6 +7,8 @@ From the same directory as your project's Gruntfile and package.json, install th
 
 `npm install grunt-karma --save-dev`
 
+Note that even numbered minor releases follow Karma's stable channel, while odd numbers follow the unstable channel. So grunt-karma@0.6.x goes with karma@0.10.x, while grunt-karma@0.7.x goes with karma@0.11.x
+
 Once that's done, add this line to your project's Gruntfile:
 
 ```js
