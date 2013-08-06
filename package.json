@@ -1,6 +1,6 @@
 {
   "name": "grunt-karma",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "grunt plugin for karma test runner",
   "main": "tasks/grunt-karma.js",
   "repository": {
@@ -28,7 +28,7 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "expect.js": "~0.2.0",
-    "grunt-release": "~0.2.0",
+    "grunt-release": "~0.5.1",
     "grunt-contrib-watch": "~0.2.0",
     "grunt-conventional-changelog": "0.0.12",
     "karma-mocha": "~0.0.1"
