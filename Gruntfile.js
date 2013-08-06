@@ -10,14 +10,20 @@ module.exports = function(grunt) {
 
     karma: {
       options: {
-        configFile: 'karma.conf.js',
-        browsers: ['Chrome']
+        browsers: ['Chrome'],
+        files: [
+          'node_modules/expect.js/expect.js',
+          'test/**/*.js'
+        ],
+        frameworks: ['mocha'],
+        plugins: ['karma-mocha', 'karma-chrome-launcher']
       },
       continuous: {
         singleRun: true
       },
       dev: {
         reporters: 'dots',
+        // clientArgs: ["--grep", true]
         background: true
       }
     },
@@ -33,7 +39,14 @@ module.exports = function(grunt) {
         files: 'test/**/*.js',
         tasks: ['karma:dev:run']
       }
+    },
+
+    release: {
+      options: {
+        npmtag: true
+      }
     }
+
   });
 
   //Load karma plugin

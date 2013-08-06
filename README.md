@@ -14,7 +14,9 @@ grunt.loadNpmTasks('grunt-karma');
 ```
 
 ##Config
-Inside your `Gruntfile.js` file, add a section named *karma*, containing any number of configurations for running karma. The only required option is the path to the [karma config file](http://karma-runner.github.com/0.8/config/configuration-file.html). Here's a simple example:
+Inside your `Gruntfile.js` file, add a section named *karma*, containing any number of configurations for running karma. You can either put your config in a [karma config file](http://karma-runner.github.com/0.8/config/configuration-file.html) or leave it all in your Gruntfile (recommended). 
+
+###Here's an example that points to the config file:
 
 ```js
 karma: {
@@ -24,7 +26,19 @@ karma: {
 }
 ```
 
-You can override any of the config file's settings directly:
+###Here's an example that puts the config in the Gruntfile:
+
+```js
+karma: {
+  unit: {
+    options: {
+      files: ['test/**/*.js']
+    }
+  }
+}
+```
+
+You can override any of the config file's settings by putting them directly in the Gruntfile:
 
 ```js
 karma: {
@@ -48,7 +62,7 @@ karma: {
     browsers: ['Chrome', 'Firefox']
   },
   continuous: {
-    singleRun: true
+    singleRun: true,
     browsers: ['PhantomJS']
   },
   dev: {
@@ -122,6 +136,15 @@ karma: {
 ```
 
 The build would then run `grunt karma:continuous` to start PhantomJS, run tests, and close PhantomJS.
+
+##Grep / Passing Options to Karma Adapters
+Any cli args will be automatically parsed and sent on to adapters in the `config.args` property. So for example to use Mocha's useful `grep` feature, run grunt-karma like so: 
+
+```
+grunt karma:dev watch --grep=mypattern
+```
+
+Note that adapters like [karma-mocha](https://github.com/karma-runner/karma-mocha) have to support the args you're wanting to pass to them.
 
 ##License
 MIT License

@@ -1,6 +1,6 @@
 {
   "name": "grunt-karma",
-  "version": "0.4.6",
+  "version": "0.5.4",
   "description": "grunt plugin for karma test runner",
   "main": "tasks/grunt-karma.js",
   "repository": {
@@ -23,16 +23,18 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "karma": "~0.8.5"
+    "optimist": "~0.6.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
     "expect.js": "~0.2.0",
     "grunt-release": "~0.5.1",
     "grunt-contrib-watch": "~0.2.0",
-    "grunt-conventional-changelog": "0.0.12"
+    "grunt-conventional-changelog": "~0.0.12",
+    "karma-mocha": "~0.1.0"
   },
   "peerDependencies": {
-    "grunt": "0.4.x"
+    "grunt": "0.4.x",
+    "karma": "~0.9.4 || ~0.10"
   }
 }
