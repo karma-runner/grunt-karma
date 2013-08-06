@@ -43,7 +43,7 @@ module.exports = function(grunt) {
 
     release: {
       options: {
-        npmtag: false
+        npmtag: true
       }
     }
 
