@@ -11,17 +11,16 @@ module.exports = function(grunt) {
     karma: {
       options: {
         browsers: ['Chrome'],
-        files: [
-          'node_modules/expect.js/expect.js',
-          'test/**/*.js'
-        ],
+        files: ['node_modules/expect.js/expect.js'],
         frameworks: ['mocha'],
         plugins: ['karma-mocha', 'karma-chrome-launcher']
       },
       continuous: {
+        files: [{pattern: 'test/**/*.js', watched: false} ],
         singleRun: true
       },
       dev: {
+        files: [{pattern: 'test/**/*.js', watched: true} ],
         reporters: 'dots',
         // clientArgs: ["--grep", true]
         background: true
