@@ -1,10 +1,13 @@
 'use strict';
 
 module.exports = function(grunt) {
-  grunt.loadNpmTasks('grunt-release');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-conventional-changelog');
-  
+
+  /******************************************************************************
+   * Load required Grunt tasks. These are installed based on the versions listed
+   * in `package.json` when you do `npm install --save-dev` in this directory.
+   ******************************************************************************/
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 

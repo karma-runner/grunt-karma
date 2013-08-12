@@ -26,6 +26,7 @@
     "optimist": "~0.6.0"
   },
   "devDependencies": {
+    "matchdep": "~0.1.2",
     "grunt": "~0.4.1",
     "expect.js": "~0.2.0",
     "grunt-release": "~0.5.1",
