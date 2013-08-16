@@ -6,14 +6,13 @@
  * Licensed under the MIT license.
  */
 
-var runner = require('karma').runner;
-var server = require('karma').server;
-var path = require('path');
-var optimist = require('optimist');
-
-var remote = require('../../protractor/node_modules/selenium-webdriver/remote');
 
 module.exports = function (grunt) {
+    var runner = require('karma').runner;
+    var server = require('karma').server;
+    var path = require('path');
+    var optimist = require('optimist');
+
     var _ = grunt.util._;
 
     grunt.registerMultiTask('karma', 'run karma.', function () {
@@ -23,8 +22,12 @@ module.exports = function (grunt) {
         });
         var config = this.data;
 
+        //console.log("\n------------ karam.config:\n", this);
+        //console.log("\n--------options\n",options);
+        //console.log("\n--------data\n",config);
+
         var files = undefined;
-        if (config.nestedFileMerge === undefined || config.nestedFileMerge != false) {
+        if (config.nestedFileMerge != false) {
             // Merge karma config files property from global options and specified target options
             // expanding each file entry:
             // this supports filtered selections [ 'path/**/*.js', '!path/**/*.spec.js' ]
@@ -38,7 +41,9 @@ module.exports = function (grunt) {
         if(files) {
             config.files = files; // replace with merged file list
         }
+        config.target = this.target;
 
+        //config.files.forEach(function(it) {console.log("loading ",it);});
         if (config.configFile) {
             config.configFile = path.resolve(config.configFile);
             config.configFile = grunt.template.process(config.configFile);
@@ -47,15 +52,12 @@ module.exports = function (grunt) {
         //pass cli args on as client args, for example --grep=x
         config.clientArgs = require('optimist').argv;
 
-        if (config.start_selenium === true) {
-            startSelenium(config);
-        }
+        //console.log("\n--------compiled options:\n",config);
 
         //support `karma run`, useful for grunt watch
         if (this.flags.run) {
             console.log("\nkarma.runner.run(...)");
             runner.run(config, function(code) {
-                if (config.kill_selenium === true) { killSelenium(); }
                 console.log('\n', config.target,'Tests Complete...');
                 done(code);
             });
@@ -67,13 +69,11 @@ module.exports = function (grunt) {
             console.log("\ngrunt.util.spawn(karma.server.start(...))");
             grunt.util.spawn({cmd: 'node', args: [path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(config)]}, function () {
             });
-            if (config.kill_selenium === true) { killSelenium(); }
             console.log('\n', config.target,'Tests Complete...');
             done();
         }
         else {
             var asyncComplete = function(code) {
-                if (config.kill_selenium === true) { killSelenium(); }
                 console.log('\n', config.target,'Tests Complete...');
                 return done(code === 0);
             };
