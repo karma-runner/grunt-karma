@@ -91,9 +91,8 @@ karma: {
 ```
 Now run `$ grunt karma`
 
-However, usually Grunt projects watch many types of files using [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) or [grunt-regarde](https://github.com/yeoman/grunt-regarde), so this option isn't preferred.
-
-###Karma Server with Grunt Watch/Regarde
+###Karma Server with Grunt Watch
+Many Grunt projects watch several types of files using [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch).
 Config karma like usual (without the autoWatch option), and add `background:true`:
 
 ```js
@@ -106,7 +105,7 @@ karma: {
 ```
 The `background` option will tell grunt to run karma in a child process so it doesn't block subsequent grunt tasks.
 
-Config your `watch` or `regarde` task to run the karma task with the `:run` flag. For example:
+Config your `watch` task to run the karma task with the `:run` flag. For example:
 
 ```js
 watch: {
