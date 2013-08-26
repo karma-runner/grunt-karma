@@ -9,6 +9,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     karma: {
+      // all of the targets will use/override these options
       options: {
         browsers: ['Chrome'],
         files: [
