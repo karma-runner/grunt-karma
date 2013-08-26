@@ -17,7 +17,10 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('karma', 'run karma.', function() {
     var done = this.async();
     var options = this.options({
-      background: false
+      background: false,
+      // allow passing of cli args on as client args, for example --grep=x
+      clientArgs: require('optimist').argv,
+      client: { args: require('optimist').argv }
     });
     var data = this.data;
     //merge options onto data, with data taking precedence
@@ -27,9 +30,6 @@ module.exports = function(grunt) {
       data.configFile = path.resolve(data.configFile);
       data.configFile = grunt.template.process(data.configFile);
     }
-
-    //pass cli args on as client args, for example --grep=x
-    data.clientArgs = require('optimist').argv;
 
     //support `karma run`, useful for grunt watch
     if (this.flags.run){

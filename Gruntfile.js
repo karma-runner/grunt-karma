@@ -21,10 +21,14 @@ module.exports = function(grunt) {
       continuous: {
         singleRun: true
       },
+      // watch using grunt-watch
       dev: {
         reporters: 'dots',
-        // clientArgs: ["--grep", true]
         background: true
+      },
+      // watch using karma
+      auto: {
+        autoWatch: true
       }
     },
 
