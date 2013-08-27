@@ -25,6 +25,10 @@ module.exports = function(grunt) {
     var data = this.data;
     //merge options onto data, with data taking precedence
     data = _.merge(options, data);
+    if(data.loadFiles){
+        data.files = data.loadFiles;
+        delete data.loadFiles;
+    }
 
     if (data.configFile) {
       data.configFile = path.resolve(data.configFile);
