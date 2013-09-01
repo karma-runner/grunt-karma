@@ -40,17 +40,17 @@ module.exports = function(grunt) {
     //allow karma to be run in the background so it doesn't block grunt
     if (data.background){
       var callback = function() {};
+      var opts = {};
       //if wait option is on run karma in the background but wait for it to finish before continuing task execution
       //avoids having multiple karma servers running if running more than once in the same task queue
-      if(data.wait){
+      if (data.wait) {
+        opts = {stdio: 'inherit'};
         callback = function(error, result, code) {
-          grunt.log.writeln(result.stdout);
-          if(result.stderr) grunt.warn(result.stderr);
           done(code === 0);
         };
       }
 
-      grunt.util.spawn({cmd: 'node', args: [path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(data)]}, callback);
+      grunt.util.spawn({cmd: 'node', opts: opts, args: [path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(data)] }, callback);
 
       //finish immediately
       if (!data.wait) done();
