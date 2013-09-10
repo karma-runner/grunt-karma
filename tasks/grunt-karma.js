@@ -22,9 +22,14 @@ module.exports = function (grunt) {
         });
         var config = this.data;
 
-        //console.log("\n------------ karam.config:\n", this);
-        //console.log("\n--------options\n",options);
-        //console.log("\n--------data\n",config);
+        console.log("\n------------ karam.config:\n", this);
+        //_.each(this.files, function(file) {console.log("file:",file);});
+
+        console.log("\n--------options\n",options);
+        //_.each(options.files, function(file) {console.log("file:",file);});
+
+        console.log("\n--------data\n",config);
+        //_.each(config.files, function(file) {console.log("file:",file);});
 
         var files = undefined;
         if (config.nestedFileMerge != false) {
@@ -53,6 +58,8 @@ module.exports = function (grunt) {
         config.clientArgs = require('optimist').argv;
 
         //console.log("\n--------compiled options:\n",config);
+
+        //_.each(config.files, function(file) {console.log("file:",file.pattern ? file.pattern : file);});
 
         //support `karma run`, useful for grunt watch
         if (this.flags.run) {
