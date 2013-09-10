@@ -22,13 +22,13 @@ module.exports = function (grunt) {
         });
         var config = this.data;
 
-        console.log("\n------------ karam.config:\n", this);
+        //console.log("\n------------ karam.config:\n", this);
         //_.each(this.files, function(file) {console.log("file:",file);});
 
-        console.log("\n--------options\n",options);
+        //console.log("\n--------options\n",options);
         //_.each(options.files, function(file) {console.log("file:",file);});
 
-        console.log("\n--------data\n",config);
+        //console.log("\n--------data\n",config);
         //_.each(config.files, function(file) {console.log("file:",file);});
 
         var files = undefined;
