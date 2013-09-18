@@ -31,6 +31,11 @@ module.exports = function(grunt) {
       data.configFile = grunt.template.process(data.configFile);
     }
 
+    // 
+
+    // Let grunt resolve the files array
+    data.files = this.filesSrc;
+
     //support `karma run`, useful for grunt watch
     if (this.flags.run){
       runner.run(data, done);
