@@ -117,7 +117,7 @@ watch: {
 },
 ```
 
-In your terminal window run `$ grunt karma:unit watch`, which runs both the karma task and the watch task. Now when grunt watch detects a change to one of your watched files, it will run the tests specified in the `unit` target using the already running karma server. This is the preferred method for development.
+In your terminal window run `$ grunt karma:unit:start watch`, which sarts the karma server and the watch task. Now when grunt watch detects a change to one of your watched files, it will run the tests specified in the `unit` target using the already running karma server. This is the preferred method for development.
 
 ### Single Run
 Keeping a browser window & karma server running during development is productive, but not a good solution for build processes. For that reason karma provides a "continuous integration" mode, which will launch the specified browser(s), run the tests, and close the browser(s). It also supports running tests in [PhantomJS](http://phantomjs.org/), a headless webkit browser which is great for running tests as part of a build. To run tests in continous integration mode just add the `singleRun` option:
