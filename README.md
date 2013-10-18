@@ -103,7 +103,7 @@ karma: {
   }
 }
 ```
-The `background` option will tell grunt to run karma in a child process so it doesn't block subsequent grunt tasks.
+The `background` option will tell grunt to run karma in a child process so it doesn't block subsequent grunt tasks. You can add `silent: true` to supress output from the background process.
 
 Config your `watch` task to run the karma task with the `:run` flag. For example:
 
