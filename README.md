@@ -48,10 +48,14 @@ karma: {
     configFile: 'karma.conf.js',
     runnerPort: 9999,
     singleRun: true,
-    browsers: ['PhantomJS']
+    browsers: ['PhantomJS'],
+    logLevel: 'ERROR'
   }
 }
 ```
+
+To change logLevel in grunt config file instead of karma config, use any of the following strings:
+'OFF', 'ERROR', 'WARN', 'INFO', 'DEBUG'
 
 ## Sharing Configs
 If you have multiple targets, it may be helpful to share common configuration settings between them. Grunt-karma supports this by using the `options` property:
