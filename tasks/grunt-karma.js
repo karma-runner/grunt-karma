@@ -18,6 +18,7 @@ module.exports = function(grunt) {
     var done = this.async();
     var options = this.options({
       background: false,
+      silent: false,
       // allow passing of cli args on as client args, for example --grep=x
       clientArgs: require('optimist').argv,
       client: { args: require('optimist').argv }
@@ -39,7 +40,15 @@ module.exports = function(grunt) {
     
     //allow karma to be run in the background so it doesn't block grunt
     if (data.background){
-      grunt.util.spawn({cmd: 'node', args: [path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(data)]}, function(){});
+      var spawnOpts = {stdio: 'ignore'}
+      if (!data.silent)
+        spawnOpts.stdio = 'inherit'
+
+      grunt.util.spawn({
+        cmd: 'node',
+        args: [path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(data)],
+        opts: spawnOpts
+      }, function(){});
       done();
     }
     else {
