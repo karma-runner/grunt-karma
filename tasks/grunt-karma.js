@@ -6,20 +6,23 @@
  * Licensed under the MIT license.
  */
 
+var runner = require('karma').runner;
+var server = require('karma').server;
+var path = require('path');
+var optimist = require('optimist');
 
 module.exports = function (grunt) {
-    var runner = require('karma').runner;
-    var server = require('karma').server;
-    var path = require('path');
-    var optimist = require('optimist');
-
     var _ = grunt.util._;
 
     grunt.registerMultiTask('karma', 'run karma.', function () {
         var done = this.async();
         var options = this.options({
-            background: false
+            background: false,
+            // allow passing of cli args on as client args, for example --grep=x
+            clientArgs: require('optimist').argv,
+            client: { args: require('optimist').argv }
         });
+
         var config = this.data;
 
         //console.log("\n------------ karam.config:\n", this);
@@ -43,7 +46,7 @@ module.exports = function (grunt) {
         //merge options onto config, with config taking precedence
         config = _.merge(options, config);
 
-        if(files) {
+        if (files) {
             config.files = files; // replace with merged file list
         }
         config.target = this.target;
@@ -54,8 +57,6 @@ module.exports = function (grunt) {
             config.configFile = grunt.template.process(config.configFile);
         }
 
-        //pass cli args on as client args, for example --grep=x
-        config.clientArgs = require('optimist').argv;
 
         //console.log("\n--------compiled options:\n",config);
 
@@ -64,8 +65,8 @@ module.exports = function (grunt) {
         //support `karma run`, useful for grunt watch
         if (this.flags.run) {
             console.log("\nkarma.runner.run(...)");
-            runner.run(config, function(code) {
-                console.log('\n', config.target,'Tests Complete...');
+            runner.run(config, function (code) {
+                console.log('\n', config.target, 'Tests Complete...');
                 done(code);
             });
             return;
@@ -76,12 +77,12 @@ module.exports = function (grunt) {
             console.log("\ngrunt.util.spawn(karma.server.start(...))");
             grunt.util.spawn({cmd: 'node', args: [path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(config)]}, function () {
             });
-            console.log('\n', config.target,'Tests Complete...');
+            console.log('\n', config.target, 'Tests Complete...');
             done();
         }
         else {
-            var asyncComplete = function(code) {
-                console.log('\n', config.target,'Tests Complete...');
+            var asyncComplete = function (code) {
+                console.log('\n', config.target, 'Tests Complete...');
                 return done(code === 0);
             };
             console.log("\nkarma.server.start(...)");
