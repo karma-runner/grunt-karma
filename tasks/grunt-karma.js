@@ -32,8 +32,8 @@ module.exports = function (grunt) {
         //console.log("\n--------data\n",config);
         //_.each(config.files, function(file) {console.log("file:",file);});
 
-        //console.log("--------------------\nPRE merged data -------\n" + displayConfig(this.data) + "\n======================\n");
-        //console.log("--------------------\nPRE merged options -------\n" + displayConfig(options) + "\n======================\n");
+        displayDebugLog(false,"--------------------\nPRE merged data -------\n" + displayConfig(this.data) + "\n======================\n");
+        displayDebugLog(false,"--------------------\nPRE merged options -------\n" + displayConfig(options) + "\n======================\n");
 
         var files = undefined
         if (this.data.nestedFileMerge != false) {
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
 
             //console.log("expanded config ----\n", config, "\n========\n");
         }
-        //console.log("--------------------\nPOST expanded options -------\n" + displayConfig(options) + "\n======================\n");
+        //displayDebugLog(false,"--------------------\nPOST expanded options -------\n" + displayConfig(options) + "\n======================\n");
 
         //merge options onto config, with config taking precedence
         var config = _.merge(options, this.data);
@@ -56,7 +56,7 @@ module.exports = function (grunt) {
             config.files = files
         }
 
-        console.log("--------------------\nPOST merged options + data -------\n" + displayConfig(config) + "\n======================\n");
+        displayDebugLog(config.debug, "--------------------\nPOST merged options + data -------\n" + displayConfig(config) + "\n======================\n");
 
         //config.files.forEach(function(it) {console.log("loading ",it);});
         if (config.configFile) {
@@ -112,9 +112,16 @@ function startKarmaServer(grunt, config, done) {
     server.start(config, asyncComplete);
 }
 
+function displayDebugLog(debug, out) {
+    if (!debug)
+        return "-- turn on debug mode to see config options --"
+
+    console.log(out)
+}
 
 var indent=""
 function displayConfig(data) {
+
     var output = "";
     for(var property in data){
         var value = data[property];
