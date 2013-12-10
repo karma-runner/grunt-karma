@@ -23,8 +23,6 @@ module.exports = function (grunt) {
             client: { args: require('optimist').argv }
         });
 
-        var config = this.data;
-
         //console.log("\n------------ karam.config:\n", this);
         //_.each(this.files, function(file) {console.log("file:",file);});
 
@@ -34,62 +32,115 @@ module.exports = function (grunt) {
         //console.log("\n--------data\n",config);
         //_.each(config.files, function(file) {console.log("file:",file);});
 
-        var files = undefined;
-        if (config.nestedFileMerge != false) {
+        //console.log("--------------------\nPRE merged data -------\n" + displayConfig(this.data) + "\n======================\n");
+        //console.log("--------------------\nPRE merged options -------\n" + displayConfig(options) + "\n======================\n");
+
+        var files = undefined
+        if (this.data.nestedFileMerge != false) {
             // Merge karma config files property from global options and specified target options
             // expanding each file entry:
             // this supports filtered selections [ 'path/**/*.js', '!path/**/*.spec.js' ]
             // caveat: files created after karma server is started will not be included or watched.
-            files = mergeFilePatterns(grunt, config, options);
+            files = mergeFilePatterns(grunt, this.data, options);
+
+            //console.log("expanded config ----\n", config, "\n========\n");
         }
+        //console.log("--------------------\nPOST expanded options -------\n" + displayConfig(options) + "\n======================\n");
 
         //merge options onto config, with config taking precedence
-        config = _.merge(options, config);
+        var config = _.merge(options, this.data);
+
+        config.target = this.target;
 
         if (files) {
-            config.files = files; // replace with merged file list
+            config.files = files
         }
-        config.target = this.target;
+
+        console.log("--------------------\nPOST merged options + data -------\n" + displayConfig(config) + "\n======================\n");
 
         //config.files.forEach(function(it) {console.log("loading ",it);});
         if (config.configFile) {
             config.configFile = path.resolve(config.configFile);
             config.configFile = grunt.template.process(config.configFile);
+
+            //console.log("loaded config ----\n", config, "\n========\n");
         }
 
 
-        //console.log("\n--------compiled options:\n",config);
+        //console.log("\n-------- processed config:\n", config);
 
         //_.each(config.files, function(file) {console.log("file:",file.pattern ? file.pattern : file);});
 
-        //support `karma run`, useful for grunt watch
         if (this.flags.run) {
-            console.log("\nkarma.runner.run(...)");
-            runner.run(config, function (code) {
-                console.log('\n', config.target, 'Tests Complete...');
-                done(code);
-            });
-            return;
+            //support `karma run`, useful for grunt watch
+            runKarma(grunt, config, done);
         }
-
-        //allow karma to be run in the background so it doesn't block grunt
-        if (config.background) {
-            console.log("\ngrunt.util.spawn(karma.server.start(...))");
-            grunt.util.spawn({cmd: 'node', args: [path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(config)]}, function () {
-            });
-            console.log('\n', config.target, 'Tests Complete...');
-            done();
+        else if (config.background) {
+            //allow karma to be run in the background so it doesn't block grunt
+            spawnKarma(grunt, config, done);
         }
         else {
-            var asyncComplete = function (code) {
-                console.log('\n', config.target, 'Tests Complete...');
-                return done(code === 0);
-            };
-            console.log("\nkarma.server.start(...)");
-            server.start(config, asyncComplete);
+            // start a new karma server and run tests.
+            startKarmaServer(grunt, config, done)
         }
     });
 };
+
+
+function runKarma(grunt, config, done) {
+    console.log("\nkarma.runner.run(...)");
+    runner.run(config, function (code) {
+        console.log('\n', config.target, 'Tests Complete...');
+        done(code);
+    });
+}
+
+function spawnKarma(grunt, config, done) {
+    //allow karma to be run in the background so it doesn't block grunt
+    console.log("\ngrunt.util.spawn(karma.server.start(...))");
+    grunt.util.spawn({cmd: 'node', args: [path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(config)]}, function () {});
+    console.log('\n', config.target, 'Tests Complete...');
+    done();
+}
+
+function startKarmaServer(grunt, config, done) {
+    var asyncComplete = function (code) {
+        console.log('\n', config.target, 'Tests Complete...');
+        return done(code === 0);
+    };
+    console.log("\nkarma.server.start(...)");
+    server.start(config, asyncComplete);
+}
+
+
+var indent=""
+function displayConfig(data) {
+    var output = "";
+    for(var property in data){
+        var value = data[property];
+        if (value != null) {
+            output += indent + "'" + property + "': ";
+            if (data[property] instanceof  Array) {
+                output += "[\n";
+                indent += "   ";
+                for (var i = 0; i < data[property].length; i++) {
+                    output += indent + JSON.stringify(data[property][i]) + ",\n"
+                }
+                indent = indent.substring(0,indent.length - 3);
+                output = output.substring(0,output.length - 2) + "\n" + indent + "]\n"
+            }
+            else if (typeof value === 'object') {
+                output += JSON.stringify(value) + "\n";
+            }
+            else {
+                output += value + "\n";
+                //alert(propt + ': ' + obj[propt]);
+            }
+        }
+    }
+    //return JSON.stringify(data)
+    return output
+}
 
 function mergeFilePatterns(grunt, globalOptions, targetOptions) {
 
