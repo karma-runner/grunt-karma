@@ -19,8 +19,8 @@ module.exports = function(grunt) {
     var options = this.options({
       background: false,
       // allow passing of cli args on as client args, for example --grep=x
-      clientArgs: require('optimist').argv,
-      client: { args: require('optimist').argv }
+      clientArgs: optimist.argv,
+      client: { args: optimist.argv }
     });
     var data = this.data;
     //merge options onto data, with data taking precedence
