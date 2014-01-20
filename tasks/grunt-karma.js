@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 
     //support `karma run`, useful for grunt watch
     if (this.flags.run){
-      runner.run(data, done);
+      runner.run(data, finished.bind(done));
       return;
     }
     
