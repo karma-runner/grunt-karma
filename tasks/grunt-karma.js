@@ -10,17 +10,17 @@ var runner = require('karma').runner;
 var server = require('karma').server;
 var path = require('path');
 var optimist = require('optimist');
+var _ = require('lodash');
 
 module.exports = function(grunt) {
-  var _ = grunt.util._;
 
   grunt.registerMultiTask('karma', 'run karma.', function() {
     var done = this.async();
     var options = this.options({
       background: false,
       // allow passing of cli args on as client args, for example --grep=x
-      clientArgs: require('optimist').argv,
-      client: { args: require('optimist').argv }
+      clientArgs: optimist.argv,
+      client: { args: optimist.argv }
     });
     var data = this.data;
     //merge options onto data, with data taking precedence
