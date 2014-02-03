@@ -22,9 +22,12 @@ module.exports = function(grunt) {
       clientArgs: optimist.argv,
       client: { args: optimist.argv }
     });
+
+    var cliOptions = processKarmaCliArgs(require('optimist').argv);
+
     var data = this.data;
-    //merge options onto data, with data taking precedence
-    data = _.merge(options, data);
+    //merge options onto data and cliOptions
+    data = _.merge(options, data, cliOptions);
 
     if (data.configFile) {
       data.configFile = path.resolve(data.configFile);
@@ -36,7 +39,7 @@ module.exports = function(grunt) {
       runner.run(data, finished.bind(done));
       return;
     }
-    
+
     //allow karma to be run in the background so it doesn't block grunt
     if (data.background){
       grunt.util.spawn({cmd: 'node', args: [path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(data)]}, function(){});
@@ -49,3 +52,66 @@ module.exports = function(grunt) {
 };
 
 function finished(code){ return this(code === 0); }
+
+var KARMA_LOG_LEVELS = {
+  LOG_DISABLE : 'OFF',
+  LOG_ERROR   : 'ERROR',
+  LOG_WARN    : 'WARN',
+  LOG_INFO    : 'INFO',
+  LOG_DEBUG   : 'DEBUG'
+};
+
+var karmaCliOptions = {
+  'autoWatch'       : bool,
+  'browsers'        : stringCommaSep,
+  'colors'          : bool,
+  'logLevel'        : function(val){
+    return KARMA_LOG_LEVELS['LOG_' + val.toUpperCase()] || KARMA_LOG_LEVELS.LOG_DISABLE;
+  },
+  'port'            : function(val){return val;},
+  'reporters'       : stringCommaSep,
+  'singleRun'       : bool,
+  'reportSlowerThan': function(val) {
+    return val === false ? 0: val;
+  }
+};
+
+
+function processKarmaCliArgs(argv) {
+  var cliOptions = {};
+
+  Object.getOwnPropertyNames(argv).forEach(function(name) {
+    if (name == '_' || name == '$0') {
+      return;
+    }
+
+    var optionName = dashToCamel(name);
+    if(typeof karmaCliOptions[optionName] != 'function') {
+      return;
+    }
+
+    cliOptions[optionName] = karmaCliOptions[optionName](argv[name]);
+  });
+  return cliOptions;
+}
+
+// helpers
+function ucFirst(word) {
+  return word.charAt(0).toUpperCase() + word.substr(1);
+}
+
+function dashToCamel(dash) {
+  var words = dash.split('-');
+  return words.shift() + words.map(ucFirst).join('');
+}
+
+function bool(val) {
+  if(typeof val == 'string') {
+    return val == 'true';
+  }
+  return val;
+}
+
+function stringCommaSep(val) {
+  return val.split(',');
+}
