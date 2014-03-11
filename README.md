@@ -1,6 +1,9 @@
 # grunt-karma [![Build Status](https://travis-ci.org/karma-runner/grunt-karma.png?branch=master)](https://travis-ci.org/karma-runner/grunt-karma)
-Grunt plugin for [Karma](https://github.com/karma-runner/karma)
-NOTE: this plugin requires Grunt 0.4.x
+
+> Grunt plugin for [Karma](https://github.com/karma-runner/karma)
+
+This current version `0.8.0` uses `karma@0.12.x`. For using older versions see the
+old releases of grunt-karma.
 
 ## Getting Started
 From the same directory as your project's Gruntfile and package.json, install
@@ -9,10 +12,6 @@ this plugin with the following command:
 ```bash
 $ npm install grunt-karma --save-dev
 ```
-
-Note that even numbered minor releases follow Karma's stable channel,
-while odd numbers follow the unstable channel. So grunt-karma@0.6.x goes
-with karma@0.10.x, while grunt-karma `>=0.7.3` goes with karma@0.11.x
 
 Once that's done, add this line to your project's Gruntfile:
 

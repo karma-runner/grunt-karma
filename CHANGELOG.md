@@ -1,3 +1,6 @@
+# 0.8.0
+* Update to `karma@0.12.0`
+
 #0.3.0
 * changed name from gruntacular to grunt-karma
 
