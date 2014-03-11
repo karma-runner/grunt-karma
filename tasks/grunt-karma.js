@@ -19,9 +19,9 @@ module.exports = function(grunt) {
     var options = this.options({
       background: false,
       // allow passing of cli args on as client args, for example --grep=x
-      clientArgs: optimist.argv,
-      client: { args: optimist.argv }
+      client: { args: optimist.argv._ }
     });
+
     var data = this.data;
     //merge options onto data, with data taking precedence
     data = _.merge(options, data);
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
       runner.run(data, finished.bind(done));
       return;
     }
-    
+
     //allow karma to be run in the background so it doesn't block grunt
     if (data.background){
       grunt.util.spawn({cmd: 'node', args: [path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(data)]}, function(){});
