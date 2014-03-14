@@ -167,14 +167,13 @@ karma: {
 The build would then run `grunt karma:continuous` to start PhantomJS,
 run tests, and close PhantomJS.
 
-## Using grep
-When using `[karma-mocha] >= 0.1.3` you can use Mocha's `grep` feature
-on the commandline like this:
+## Using additional client.args
+You can pass arbitrary `client.args` through the commandline like this:
 
 ```bash
 $ grunt karma:dev watch --grep=mypattern
-$ grunt karma:dev watch --grep=multiple,patterns,work
 ```
+
 
 ## License
 MIT License

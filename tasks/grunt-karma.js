@@ -22,13 +22,8 @@ module.exports = function(grunt) {
     if (!options.client) {
         options.client = {};
     }
-    // Allow for passing of `--grep=x` or `--grep=x,two`
-    var args = grunt.option('grep')
-    if (args) {
-        args = _.map(args.split(','), function (arg) {
-            return '--grep=' + arg;
-        });
-    }
+    // Allow for passing cli arguments to `client.args` using  `--grep=x`
+    var args = parseArgs(process.argv.slice(2));
     if (_.isArray(options.client.args)) {
         options.client.args = options.client.args.concat(args);
     } else {
@@ -50,7 +45,7 @@ module.exports = function(grunt) {
     data.browsers = this.data.browsers || data.browsers;
 
     // Merge client.args
-    if (_.isArray(this.data.client.args)) {
+    if (this.data.client && _.isArray(this.data.client.args)) {
         data.client.args = this.data.client.args.concat(options.client.args);
     }
 
@@ -80,3 +75,12 @@ module.exports = function(grunt) {
 };
 
 function finished(code){ return this(code === 0); }
+
+
+// Parse out all cli arguments in the form of `--arg=something` or
+// `-c=otherthing` and return the array.
+function parseArgs(args) {
+    return _.filter(args, function (arg) {
+        return arg.match(/^--?/);
+    });
+}
