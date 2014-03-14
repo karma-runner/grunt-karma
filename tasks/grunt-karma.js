@@ -31,6 +31,13 @@ module.exports = function(grunt) {
     }
     options.client.args = args;
 
+    // Merge karma default options
+    options.client = _.defaults(options.client, {
+        args: [],
+        useIframe: true,
+        captureConsole: true
+    });
+
     var data = this.data;
     // Merge options onto data, with data taking precedence.
     data = _.merge(options, data);
