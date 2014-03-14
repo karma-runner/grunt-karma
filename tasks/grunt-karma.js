@@ -9,7 +9,6 @@
 var runner = require('karma').runner;
 var server = require('karma').server;
 var path = require('path');
-var optimist = require('optimist');
 var _ = require('lodash');
 
 module.exports = function(grunt) {
@@ -17,10 +16,20 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('karma', 'run karma.', function() {
     var done = this.async();
     var options = this.options({
-      background: false,
-      // allow passing of cli args on as client args, for example --grep=x
-      client: { args: optimist.argv._ }
+      background: false
     });
+
+    if (!options.client) {
+        options.client = {};
+    }
+    // Allow for passing of `--grep=x` or `--grep=x,two`
+    var args = grunt.option('grep')
+    if (args) {
+        args = _.map(args.split(','), function (arg) {
+            return '--grep=' + arg;
+        });
+    }
+    options.client.args = args;
 
     var data = this.data;
     //merge options onto data, with data taking precedence
