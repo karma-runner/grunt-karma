@@ -42,7 +42,9 @@ module.exports = function(grunt) {
     var data = _.merge(opts, this.data);
 
     // But override the browsers array.
-    data.browsers = this.data.browsers || data.browsers;
+    if (data.browsers && this.data.browsers) {
+      data.browsers = this.data.browsers;
+    }
 
     // Merge client.args
     if (this.data.client && _.isArray(this.data.client.args)) {
