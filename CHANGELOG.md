@@ -1,3 +1,10 @@
+# 0.8.1
+* Kill background child process on main process exit. (@trabianmatt)
+* Fix passing `client.args` through the commandline.
+* Actually override the browsers array.
+* Set client default args.
+* Merge `client.args` from all sources.
+
 # 0.8.0
 * Update to `karma@0.12.0`
 
