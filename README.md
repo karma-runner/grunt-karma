@@ -61,7 +61,7 @@ karma: {
 }
 ```
 
-To change logLevel in grunt config file instead of karma config, use following strings:
+To change the `logLevel` in the grunt config file instead of the karma config, use one of the following strings:
 `OFF`, `ERROR`, `WARN`, `INFO`, `DEBUG`
 
 ## Sharing Configs
