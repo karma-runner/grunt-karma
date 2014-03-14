@@ -30,9 +30,10 @@ module.exports = function(grunt) {
           'test/**/*.js'
         ],
         frameworks: ['mocha'],
-        plugins: plugins
+        plugins: plugins,
+        //client: {captureConsole: true}
       },
-      continuous: {
+      single: {
         singleRun: true
       },
       // watch using grunt-watch
@@ -70,6 +71,6 @@ module.exports = function(grunt) {
   //Load karma plugin
   grunt.loadTasks('tasks');
 
-  grunt.registerTask('test', ['karma:continuous']);
+  grunt.registerTask('test', ['karma:single']);
   grunt.registerTask('default', ['test']);
 };
