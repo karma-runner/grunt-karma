@@ -1,3 +1,6 @@
+# 0.8.2
+* Emergency fix: Don't pass anything to karma if no browsers are defined.
+
 # 0.8.1
 * Kill background child process on main process exit. (@trabianmatt)
 * Fix passing `client.args` through the commandline.
