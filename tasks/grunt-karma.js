@@ -29,21 +29,30 @@ module.exports = function(grunt) {
             return '--grep=' + arg;
         });
     }
-    options.client.args = args;
+    if (_.isArray(options.client.args)) {
+        options.client.args = options.client.args.concat(args);
+    } else {
+        options.client.args = args;
+    }
 
     // Merge karma default options
-    options.client = _.defaults(options.client, {
+    _.defaults(options.client, {
         args: [],
         useIframe: true,
         captureConsole: true
     });
 
-    var data = this.data;
+    var opts = _.cloneDeep(options);
     // Merge options onto data, with data taking precedence.
-    data = _.merge(options, data);
+    var data = _.merge(opts, this.data);
 
     // But override the browsers array.
     data.browsers = this.data.browsers || data.browsers;
+
+    // Merge client.args
+    if (_.isArray(this.data.client.args)) {
+        data.client.args = this.data.client.args.concat(options.client.args);
+    }
 
     if (data.configFile) {
       data.configFile = path.resolve(data.configFile);

@@ -31,7 +31,6 @@ module.exports = function(grunt) {
         ],
         frameworks: ['mocha'],
         plugins: plugins,
-        //client: {captureConsole: true}
       },
       single: {
         singleRun: true
