@@ -32,8 +32,11 @@ module.exports = function(grunt) {
     options.client.args = args;
 
     var data = this.data;
-    //merge options onto data, with data taking precedence
+    // Merge options onto data, with data taking precedence.
     data = _.merge(options, data);
+
+    // But override the browsers array.
+    data.browsers = this.data.browsers || data.browsers;
 
     if (data.configFile) {
       data.configFile = path.resolve(data.configFile);
