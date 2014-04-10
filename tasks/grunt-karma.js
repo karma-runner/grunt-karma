@@ -75,7 +75,17 @@ module.exports = function(grunt) {
       done();
     }
     else {
-      server.start(data, finished.bind(done));
+      //temporarily remove Grunt's uncaughtException listener, so that
+      //karma can handle these and stop any running browsers
+      var uncaughtListeners = process.listeners('uncaughtException');
+      process.removeAllListeners('uncaughtException');
+
+      function resetListeners(result) {
+        uncaughtListeners.forEach(process.on.bind(process, 'uncaughtException'));
+        done(result);
+      }
+
+      server.start(data, finished.bind(resetListeners));
     }
   });
 };
