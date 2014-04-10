@@ -75,6 +75,10 @@ module.exports = function(grunt) {
       done();
     }
     else {
+      //listen for SIGINT and take care of stopping the process *after* karma
+      //stopped all browsers
+      var sigint = false;
+      process.on('SIGINT', function() { sigint = true; });
       //temporarily remove Grunt's uncaughtException listener, so that
       //karma can handle these and stop any running browsers
       var uncaughtListeners = process.listeners('uncaughtException');
@@ -83,6 +87,9 @@ module.exports = function(grunt) {
       function resetListeners(result) {
         uncaughtListeners.forEach(process.on.bind(process, 'uncaughtException'));
         done(result);
+        if( sigint ) {
+          process.exit(130);
+        }
       }
 
       server.start(data, finished.bind(resetListeners));
