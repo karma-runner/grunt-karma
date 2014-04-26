@@ -64,6 +64,23 @@ karma: {
 To change the `logLevel` in the grunt config file instead of the karma config, use one of the following strings:
 `OFF`, `ERROR`, `WARN`, `INFO`, `DEBUG`
 
+### Config with Grunt Template Strings in `files`
+
+When using template strings in the `files` option, the results will flattened. Therefore, if you include a variable that includes an array, the array will be flattened before being passed to Karma.
+
+Example:
+
+```js
+meta: {
+  jsFiles: ['jquery.js','angular.js']
+},
+karma: {
+  options: {
+    files: ['<%= meta.jsFiles %>','angular-mocks.js','**/*-spec.js']
+  }
+}
+```
+
 ## Sharing Configs
 If you have multiple targets, it may be helpful to share common
 configuration settings between them. Grunt-karma supports this by
