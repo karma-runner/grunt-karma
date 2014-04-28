@@ -1,3 +1,6 @@
+# 0.8.3
+* Flatten `files` input (@cgross)
+
 # 0.8.2
 * Emergency fix: Don't pass anything to karma if no browsers are defined.
 
