@@ -16,7 +16,7 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('karma', 'run karma.', function() {
     var done = this.async();
     var options = this.options({
-      background: false
+      background: false,
       exitOnFailure: true
     });
 
