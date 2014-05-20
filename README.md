@@ -52,6 +52,7 @@ directly in the Gruntfile:
 ```js
 karma: {
   unit: {
+    exitOnFailure: false,
     configFile: 'karma.conf.js',
     runnerPort: 9999,
     singleRun: true,
@@ -60,6 +61,8 @@ karma: {
   }
 }
 ```
+
+The 'exitOnFailure' config property when false, will continue executing grunt tasks instead of having karma exit the process (warning: when set to false and running with multiple grunt tasks, the build will not be considered a 'failure' even if some tests failed).  The default value is true.  A value of true will exit the process on test failures and halt any further grunt executions.
 
 To change the `logLevel` in the grunt config file instead of the karma config, use one of the following strings:
 `OFF`, `ERROR`, `WARN`, `INFO`, `DEBUG`
