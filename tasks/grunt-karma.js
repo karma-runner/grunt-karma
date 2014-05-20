@@ -17,7 +17,6 @@ module.exports = function(grunt) {
     var done = this.async();
     var options = this.options({
       background: false
-      exitOnFailure: true
     });
 
     if (!options.client) {
@@ -76,11 +75,7 @@ module.exports = function(grunt) {
       done();
     }
     else {
-      if(data.exitOnFailure){
-        server.start(data, finished.bind(done));
-      }else{
-        server.start(data, done);
-      }
+      server.start(data, finished.bind(done));
     }
   });
 };
