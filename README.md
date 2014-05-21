@@ -57,13 +57,16 @@ karma: {
     runnerPort: 9999,
     singleRun: true,
     browsers: ['PhantomJS'],
-    logLevel: 'ERROR'
+    logLevel: 'ERROR',
+    debug: true
   }
 }
 ```
 
 To change the `logLevel` in the grunt config file instead of the karma config, use one of the following strings:
 `OFF`, `ERROR`, `WARN`, `INFO`, `DEBUG`
+
+Setting the debug option to true will cause the karma output to be printed.
 
 ### Config with Grunt Template Strings in `files`
 
