@@ -38,6 +38,6 @@
   },
   "peerDependencies": {
     "grunt": "0.4.x",
-    "karma": "~0.12.0"
+    "karma": "git://github.com/sflyphotobooks/karma.git#36bb630a8a999c66730372101990dcbaff2efecb"
   }
 }
