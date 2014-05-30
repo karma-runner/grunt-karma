@@ -19,23 +19,25 @@ module.exports = function(grunt) {
       background: false
     });
 
-    if (!options.client) {
-        options.client = {};
-    }
     // Allow for passing cli arguments to `client.args` using  `--grep=x`
     var args = parseArgs(process.argv.slice(2));
-    if (_.isArray(options.client.args)) {
-        options.client.args = options.client.args.concat(args);
-    } else {
-        options.client.args = args;
-    }
+    if (args.length > 0) {
+        if (!options.client) {
+            options.client = {};
+        }
+        if (_.isArray(options.client.args)) {
+            options.client.args = options.client.args.concat(args);
+        } else {
+            options.client.args = args;
+        }
 
-    // Merge karma default options
-    _.defaults(options.client, {
-        args: [],
-        useIframe: true,
-        captureConsole: true
-    });
+        // Merge karma default options
+        _.defaults(options.client, {
+            args: [],
+            useIframe: true,
+            captureConsole: true
+        });
+    }
 
     var opts = _.cloneDeep(options);
     // Merge options onto data, with data taking precedence.
@@ -47,7 +49,7 @@ module.exports = function(grunt) {
     }
 
     // Merge client.args
-    if (this.data.client && _.isArray(this.data.client.args)) {
+    if (options.client && this.data.client && _.isArray(this.data.client.args)) {
         data.client.args = this.data.client.args.concat(options.client.args);
     }
 
