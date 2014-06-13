@@ -136,12 +136,16 @@ Config karma like usual (without the autoWatch option), and add
 karma: {
   unit: {
     configFile: 'karma.conf.js',
-    background: true
+    background: true,
+    singleRun: false
   }
 }
 ```
 The `background` option will tell grunt to run karma in a child process
 so it doesn't block subsequent grunt tasks.
+
+The `singleRun: false` option will tell grunt to keep the karma server up
+after a test run.
 
 Config your `watch` task to run the karma task with the `:run` flag. For example:
 
