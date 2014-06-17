@@ -70,7 +70,7 @@ module.exports = function(grunt) {
     if (data.background){
       var backgroundArgs = {
         cmd: 'node',
-        args: [path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(data)]
+        args: process.execArgv.concat([path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(data)])
       };
       var backgroundProcess = grunt.util.spawn(backgroundArgs, function(error){
         if (error) {
