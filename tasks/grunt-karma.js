@@ -13,7 +13,7 @@ var _ = require('lodash');
 
 module.exports = function(grunt) {
 
-  grunt.registerMultiTask('karma', 'run karma.', function() {
+  grunt.registerMultiTask('test', 'run karma.', function() {
     var done = this.async();
     var options = this.options({
       background: false
