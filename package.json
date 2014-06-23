@@ -1,11 +1,11 @@
 {
-  "name": "grunt-karma",
+  "name": "mtfe_grunt-karma",
   "version": "0.8.3",
   "description": "grunt plugin for karma test runner",
   "main": "tasks/grunt-karma.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/karma-runner/grunt-karma.git"
+    "url": "http://huangyingjie@git.sankuai.com/scm/fep/grunt-karma.git"
   },
   "keywords": [
     "gruntplugin",
