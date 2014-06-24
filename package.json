@@ -1,6 +1,6 @@
 {
   "name": "mtfe_grunt-karma",
-  "version": "0.8.4",
+  "version": "0.8.5",
   "description": "grunt plugin for karma test runner",
   "main": "tasks/grunt-karma.js",
   "repository": {
