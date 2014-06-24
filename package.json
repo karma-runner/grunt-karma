@@ -23,7 +23,8 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "minimist": "~0.2.0"
   },
   "devDependencies": {
     "grunt": "~0.4.3",
