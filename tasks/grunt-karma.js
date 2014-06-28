@@ -1,3 +1,4 @@
+/*jshint node:true */
 /*
  * grunt-karma
  * https://github.com/karma-runner/grunt-karma
@@ -10,46 +11,26 @@ var runner = require('karma').runner;
 var server = require('karma').server;
 var path = require('path');
 var _ = require('lodash');
+var minimist = require('minimist');
 
 module.exports = function(grunt) {
 
-  grunt.registerMultiTask('karma', 'run karma.', function() {
+  grunt.registerMultiTask('test', 'run karma.', function() {
     var done = this.async();
     var options = this.options({
       background: false
     });
 
-    if (!options.client) {
-        options.client = {};
-    }
-    // Allow for passing cli arguments to `client.args` using  `--grep=x`
-    var args = parseArgs(process.argv.slice(2));
-    if (_.isArray(options.client.args)) {
-        options.client.args = options.client.args.concat(args);
-    } else {
-        options.client.args = args;
-    }
-
-    // Merge karma default options
-    _.defaults(options.client, {
-        args: [],
-        useIframe: true,
-        captureConsole: true
-    });
 
     var opts = _.cloneDeep(options);
     // Merge options onto data, with data taking precedence.
     var data = _.merge(opts, this.data);
+    // parse all karma argv
+    var args = minimist(process.argv.slice(2));
+    //将string类型的boolean数据转换为boolean
+    parseBoolean(args);
+    data = _.merge(data, args);
 
-    // But override the browsers array.
-    if (data.browsers && this.data.browsers) {
-      data.browsers = this.data.browsers;
-    }
-
-    // Merge client.args
-    if (this.data.client && _.isArray(this.data.client.args)) {
-        data.client.args = this.data.client.args.concat(options.client.args);
-    }
 
     if (data.configFile) {
       data.configFile = path.resolve(data.configFile);
@@ -81,12 +62,13 @@ module.exports = function(grunt) {
 };
 
 function finished(code){ return this(code === 0); }
-
-
-// Parse out all cli arguments in the form of `--arg=something` or
-// `-c=otherthing` and return the array.
-function parseArgs(args) {
-    return _.filter(args, function (arg) {
-        return arg.match(/^--?/);
+//将string类型的boolean数据转换为boolean
+function parseBoolean (args) {
+    _.forIn(args, function (value, key) {
+        if (value === 'true') {
+            args[key] = true;
+        } else if (value === 'false') {
+            args[key] = false;
+        }
     });
 }

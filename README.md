@@ -27,7 +27,7 @@ config in a [karma config file] or leave it all in your Gruntfile (recommended).
 ### Here's an example that points to the config file:
 
 ```js
-karma: {
+test: {
   unit: {
     configFile: 'karma.conf.js'
   }
@@ -37,7 +37,7 @@ karma: {
 ### Here's an example that puts the config in the Gruntfile:
 
 ```js
-karma: {
+test: {
   unit: {
     options: {
       files: ['test/**/*.js']
@@ -50,7 +50,7 @@ You can override any of the config file's settings by putting them
 directly in the Gruntfile:
 
 ```js
-karma: {
+test: {
   unit: {
     configFile: 'karma.conf.js',
     runnerPort: 9999,
@@ -74,7 +74,7 @@ Example:
 meta: {
   jsFiles: ['jquery.js','angular.js']
 },
-karma: {
+test: {
   options: {
     files: ['<%= meta.jsFiles %>','angular-mocks.js','**/*-spec.js']
   }
@@ -87,7 +87,7 @@ configuration settings between them. Grunt-karma supports this by
 using the `options` property:
 
 ```js
-karma: {
+test: {
   options: {
     configFile: 'karma.conf.js',
     runnerPort: 9999,
@@ -110,14 +110,14 @@ PhantomJS, and also run as a singleRun. The `dev` target will simply
 change the reporter to dots.
 
 ## Running tests
-There are three ways to run your tests with karma:
+There are three ways to run your tests with test:
 
 ### Karma Server with Auto Runs on File Change
 Setting the `autoWatch` option to true will instruct karma to start
 a server and watch for changes to files, running tests automatically:
 
 ```js
-karma: {
+test: {
   unit: {
     configFile: 'karma.conf.js',
     autoWatch: true
@@ -132,7 +132,7 @@ Config karma like usual (without the autoWatch option), and add
 `background:true`:
 
 ```js
-karma: {
+test: {
   unit: {
     configFile: 'karma.conf.js',
     background: true
@@ -147,14 +147,14 @@ Config your `watch` task to run the karma task with the `:run` flag. For example
 ```js
 watch: {
   //run unit tests with karma (server needs to be already running)
-  karma: {
+  test: {
     files: ['app/js/**/*.js', 'test/browser/**/*.js'],
-    tasks: ['karma:unit:run'] //NOTE the :run flag
+    tasks: ['test:unit:run'] //NOTE the :run flag
   }
 },
 ```
 
-In your terminal window run `$ grunt karma:unit:start watch`, which starts the
+In your terminal window run `$ grunt test:unit:start watch`, which starts the
 karma server and the watch task. Now when grunt watch detects a change to
 one of your watched files, it will run the tests specified in the `unit`
 target using the already running karma server. This is the preferred method
@@ -168,7 +168,7 @@ browser(s), run the tests, and close the browser(s). It also supports running
 tests in [PhantomJS], a headless webkit browser which is great for running tests as part of a build. To run tests in continous integration mode just add the `singleRun` option:
 
 ```js
-karma: {
+test: {
   unit: {
     configFile: 'config/karma.conf.js',
   },
@@ -181,14 +181,13 @@ karma: {
 }
 ```
 
-The build would then run `grunt karma:continuous` to start PhantomJS,
+The build would then run `grunt test:continuous` to start PhantomJS,
 run tests, and close PhantomJS.
 
-## Using additional client.args
-You can pass arbitrary `client.args` through the commandline like this:
+## Using karma config directly
 
 ```bash
-$ grunt karma:dev watch --grep=mypattern
+$ grunt test:ci --singleRun=false
 ```
 
 

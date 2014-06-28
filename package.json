@@ -1,11 +1,11 @@
 {
-  "name": "grunt-karma",
-  "version": "0.8.3",
+  "name": "mtfe_grunt-karma",
+  "version": "0.8.6",
   "description": "grunt plugin for karma test runner",
   "main": "tasks/grunt-karma.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/karma-runner/grunt-karma.git"
+    "url": "http://huangyingjie@git.sankuai.com/scm/fep/grunt-karma.git"
   },
   "keywords": [
     "gruntplugin",
@@ -23,7 +23,8 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "lodash": "~2.4.1"
+    "lodash": "~2.4.1",
+    "minimist": "~0.2.0"
   },
   "devDependencies": {
     "grunt": "~0.4.3",
