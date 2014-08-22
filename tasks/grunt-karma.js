@@ -16,12 +16,11 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('karma', 'run karma.', function() {
     var done = this.async();
     var options = this.options({
-      background: false
+      background: false,
+      files: [],
+      client: {}
     });
 
-    if (!options.client) {
-        options.client = {};
-    }
     // Allow for passing cli arguments to `client.args` using  `--grep=x`
     var args = parseArgs(process.argv.slice(2));
     if (_.isArray(options.client.args)) {
@@ -56,9 +55,17 @@ module.exports = function(grunt) {
       data.configFile = grunt.template.process(data.configFile);
     }
 
-    if (data.files){
-      data.files = _.flatten(data.files);
-    }
+    data.files = [].concat.apply(options.files, this.files.map(function(file) {
+      return file.src.map(function(src) {
+        var obj = { pattern: src };
+        ['watched', 'served', 'included'].forEach(function(opt) {
+          if (opt in file) {
+            obj[opt] = file[opt];
+          }
+        });
+        return obj;
+      });
+    }));
 
     //support `karma run`, useful for grunt watch
     if (this.flags.run){

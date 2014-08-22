@@ -64,6 +64,36 @@ karma: {
 To change the `logLevel` in the grunt config file instead of the karma config, use one of the following strings:
 `OFF`, `ERROR`, `WARN`, `INFO`, `DEBUG`
 
+The `files` option can be extended "per-target" in the typical way
+Grunt handles [files][grunt-config-files]:
+
+```js
+karma: {
+  options: {
+    files: ['lib/**/*.js']
+  },
+  unit: {
+    files: [
+      { src: ['test/**/*.js'] }
+    ]
+  }
+}
+```
+
+When using the "Grunt way" of specifying files, you can also extend the
+file objects with the options [supported by karma][karma-config-files]:
+
+```js
+karma: {
+  unit: {
+    files: [
+      { src: ['test/**/*.js'], served: true },
+      { src: ['lib/**/*.js'], served: true, included: false }
+    ]
+  }
+}
+```
+
 ### Config with Grunt Template Strings in `files`
 
 When using template strings in the `files` option, the results will flattened. Therefore, if you include a variable that includes an array, the array will be flattened before being passed to Karma.
@@ -195,7 +225,9 @@ $ grunt karma:dev watch --grep=mypattern
 ## License
 MIT License
 
-[karma-config-file]: http://karma-runner.github.com/0.8/config/configuration-file.html
+[karma-config-file]: http://karma-runner.github.com/0.12/config/configuration-file.html
+[karma-config-files]: http://karma-runner.github.io/0.12/config/files.html
+[grunt-config-files]: http://gruntjs.com/configuring-tasks#files
 [grunt-contrib-watch]: https://github.com/gruntjs/grunt-contrib-watch
 [PhantomJS]: http://phantomjs.org/
 [karma-mocha]: https://github.com/karma-runner/karma-mocha
