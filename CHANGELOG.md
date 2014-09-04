@@ -1,3 +1,21 @@
+# 0.9.0 (2014-09-04)
+
+## Features
+### conventional-changelog
+
+* add conventional-changelog (72c67e3)
+
+### karma-dependency
+
+* Bump Karma depdency to ~0.9.2 (23a4f25)
+
+### 
+
+* make configFile optional (cee07ab)
+
+
+
+
 # 0.8.3
 * Flatten `files` input (@cgross)
 
