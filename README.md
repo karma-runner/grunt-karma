@@ -1,4 +1,5 @@
-# grunt-karma [![Build Status](https://travis-ci.org/karma-runner/grunt-karma.svg?branch=master)](https://travis-ci.org/karma-runner/grunt-karma)
+# grunt-karma [![Build Status](https://travis-ci.org/karma-runner/grunt-karma.svg?branch=master)](https://travis-ci.org/karma-runner/grunt-karma) [![Dependency Status](https://david-dm.org/karma-runner/grunt-karma.svg)](https://david-dm.org/karma-runner/grunt-karma) [![devDependency Status](https://david-dm.org/karma-runner/grunt-karma/dev-status.svg)](https://david-dm.org/karma-runner/grunt-karma#info=devDependencies)
+
 
 > Grunt plugin for [Karma](https://github.com/karma-runner/karma)
 
