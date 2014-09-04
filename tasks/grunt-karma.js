@@ -53,7 +53,6 @@ module.exports = function(grunt) {
 
     if (data.configFile) {
       data.configFile = path.resolve(data.configFile);
-      data.configFile = grunt.template.process(data.configFile);
     }
 
     if (data.files){
