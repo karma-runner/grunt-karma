@@ -66,17 +66,24 @@ module.exports = function(grunt) {
       return;
     }
 
+
     //allow karma to be run in the background so it doesn't block grunt
     if (data.background){
-      var backgroundArgs = {
+      var opts = {
         cmd: 'node',
         args: process.execArgv.concat([path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(data)])
-      };
-      var backgroundProcess = grunt.util.spawn(backgroundArgs, function(error){
+      }
+
+      if (grunt.log.option('debug')) {
+        opts.opts = {stdio: 'inherit'}
+      }
+
+      var backgroundProcess = grunt.util.spawn(opts, function(error){
         if (error) {
           grunt.log.error(error);
         }
       });
+
       process.on('exit', function () {
         backgroundProcess.kill();
       });
