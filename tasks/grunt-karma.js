@@ -11,6 +11,20 @@ var server = require('karma').server;
 var path = require('path');
 var _ = require('lodash');
 
+function finished(code){
+    return this(code === 0);
+}
+
+
+// Parse out all cli arguments in the form of `--arg=something` or
+// `-c=otherthing` and return the array.
+function parseArgs(args) {
+    return _.filter(args, function(arg) {
+        return arg.match(/^--?/);
+    });
+}
+
+
 module.exports = function(grunt) {
 
   grunt.registerMultiTask('karma', 'run karma.', function() {
@@ -62,7 +76,7 @@ module.exports = function(grunt) {
     // Allow the use of templates in preprocessors
     if (_.isPlainObject(data.preprocessors)) {
       var preprocessors = {};
-      Object.keys(data.preprocessors).forEach(function (key) {
+      Object.keys(data.preprocessors).forEach(function(key) {
         var value = data.preprocessors[key];
         key = path.resolve(key);
         key = grunt.template.process(key);
@@ -81,31 +95,23 @@ module.exports = function(grunt) {
     if (data.background){
       var backgroundArgs = {
         cmd: 'node',
-        args: process.execArgv.concat([path.join(__dirname, '..', 'lib', 'background.js'), JSON.stringify(data)])
+          args: process.execArgv.concat([
+              path.join(__dirname, '..', 'lib', 'background.js'),
+              JSON.stringify(data)
+          ])
       };
-      var backgroundProcess = grunt.util.spawn(backgroundArgs, function(error){
+      var backgroundProcess = grunt.util.spawn(backgroundArgs, function(error) {
         if (error) {
           grunt.log.error(error);
         }
       });
-      process.on('exit', function () {
+      process.on('exit', function() {
         backgroundProcess.kill();
       });
+
       done();
-    }
-    else {
+    } else {
       server.start(data, finished.bind(done));
     }
   });
 };
-
-function finished(code){ return this(code === 0); }
-
-
-// Parse out all cli arguments in the form of `--arg=something` or
-// `-c=otherthing` and return the array.
-function parseArgs(args) {
-    return _.filter(args, function (arg) {
-        return arg.match(/^--?/);
-    });
-}
