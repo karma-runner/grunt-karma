@@ -53,11 +53,22 @@ module.exports = function(grunt) {
 
     if (data.configFile) {
       data.configFile = path.resolve(data.configFile);
-      data.configFile = grunt.template.process(data.configFile);
     }
 
     if (data.files){
       data.files = _.flatten(data.files);
+    }
+
+    // Allow the use of templates in preprocessors
+    if (_.isPlainObject(data.preprocessors)) {
+      var preprocessors = {};
+      Object.keys(data.preprocessors).forEach(function (key) {
+        var value = data.preprocessors[key];
+        key = path.resolve(key);
+        key = grunt.template.process(key);
+        preprocessors[key] = value;
+      });
+      data.preprocessors = preprocessors;
     }
 
     //support `karma run`, useful for grunt watch
