@@ -13,6 +13,7 @@ module.exports = (grunt) ->
 
 
   grunt.initConfig
+    pkg: grunt.file.readJSON 'package.json'
     pkgFile: 'package.json'
 
     files: [
@@ -66,6 +67,7 @@ module.exports = (grunt) ->
 
     bump:
       options:
+        updateConfigs: ['pkg']
         commitFiles: ['package.json', 'CHANGELOG.md']
         commitMessage: 'chore: release v%VERSION%'
         pushTo: 'upstream'
@@ -111,13 +113,14 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-npm'
   grunt.loadNpmTasks 'grunt-bump'
   grunt.loadNpmTasks 'grunt-auto-release'
+  grunt.loadNpmTasks 'grunt-conventional-changelog'
 
   grunt.registerTask 'test', ['karma:single']
   grunt.registerTask 'default', ['jshint', 'jscs', 'test']
   grunt.registerTask 'release', 'Bump the version and publish to npm.', (type) ->
     grunt.task.run [
+      "bump:#{type||'patch'}"
       'changelog'
       'npm-contributors'
-      "bump:#{type||'patch'}"
       'npm-publish'
     ]
