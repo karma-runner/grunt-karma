@@ -1,3 +1,14 @@
+<a name="0.10.0"></a>
+## 0.10.0 (2015-01-09)
+
+
+#### Features
+
+* **task:**
+  * let Grunt do the file matching ([cb53deae](https://github.com/karma-runner/grunt-karma/commit/cb53deaef6da756be55e35c7d9fa57b84afda2ed))
+  * process templates in the config ([a10aaa75](https://github.com/karma-runner/grunt-karma/commit/a10aaa7548267ab035f8f4689eb54b2ead9245ef))
+
+
 # 0.9.0 (2014-09-04)
 
 ## Features
