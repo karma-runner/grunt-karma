@@ -1,3 +1,12 @@
+<a name="0.10.1"></a>
+### 0.10.1 (2015-01-09)
+
+
+#### Bug Fixes
+
+* **task:** allow files definition in karma.conf ([6accf230](https://github.com/karma-runner/grunt-karma/commit/6accf230ce3eb945627709cc80fe3eafc82b9944), closes [#134](https://github.com/karma-runner/grunt-karma/issues/134))
+
+
 <a name="0.10.0"></a>
 ## 0.10.0 (2015-01-09)
 
