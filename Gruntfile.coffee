@@ -72,6 +72,7 @@ module.exports = (grunt) ->
         commitMessage: 'chore: release v%VERSION%'
         pushTo: 'upstream'
         push: false
+        gitDescribeOptions: '| echo "beta-$(git rev-parse --short HEAD)"'
 
     karma:
       # all of the targets will use/override these options
@@ -96,10 +97,6 @@ module.exports = (grunt) ->
       auto:
         autoWatch: true
 
-    changelog:
-      options:
-        dest: 'CHANGELOG.md'
-
     watch:
       tests:
         files: 'test/**/*.js',
@@ -119,8 +116,9 @@ module.exports = (grunt) ->
   grunt.registerTask 'default', ['jshint', 'jscs', 'test']
   grunt.registerTask 'release', 'Bump the version and publish to npm.', (type) ->
     grunt.task.run [
-      "bump:#{type||'patch'}"
-      'changelog'
       'npm-contributors'
+      "bump:#{type||'patch'}:bump-only"
+      'changelog'
+      'bump-commit'
       'npm-publish'
     ]
