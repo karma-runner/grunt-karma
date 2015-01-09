@@ -31,7 +31,6 @@ module.exports = function(grunt) {
     var done = this.async();
     var options = this.options({
       background: false,
-      files: [],
       client: {}
     });
 
@@ -68,20 +67,22 @@ module.exports = function(grunt) {
       data.configFile = path.resolve(data.configFile);
     }
 
-    data.files = [].concat.apply(options.files, this.files.map(function(file) {
-      return file.src.map(function(src) {
-        var obj = {
-          pattern: src
-        };
+    if (data.files || options.files) {
+      data.files = [].concat.apply(options.files || [], this.files.map(function(file) {
+        return file.src.map(function(src) {
+          var obj = {
+            pattern: src
+          };
 
-        ['watched', 'served', 'included'].forEach(function(opt) {
-          if (opt in file) {
-            obj[opt] = file[opt];
-          }
+          ['watched', 'served', 'included'].forEach(function(opt) {
+            if (opt in file) {
+              obj[opt] = file[opt];
+            }
+          });
+          return obj;
         });
-        return obj;
-      });
-    }));
+      }));
+    }
 
     // Allow the use of templates in preprocessors
     if (_.isPlainObject(data.preprocessors)) {
