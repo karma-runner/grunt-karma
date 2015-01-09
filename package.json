@@ -44,5 +44,31 @@
   "peerDependencies": {
     "grunt": "0.4.x",
     "karma": "~0.12.0"
-  }
+  },
+  "contributors": [
+    "dignifiedquire <friedel.ziegelmayer@gmail.com>",
+    "Michał Gołębiowski <m.goleb@gmail.com>",
+    "dsuckau <denis.suckau@concepts-and-training.de>",
+    "Christian Reed <christian@rgbfab.com>",
+    "Daniel Herman <daniel.c.herman@gmail.com>",
+    "Eddie Monge <eddie@eddiemonge.com>",
+    "James Ford <jford@psyked.co.uk>",
+    "Jonas Pommerening <jonas.pommerening@gmail.com>",
+    "Matt Dean <matt@trabian.com>",
+    "Max Riveiro <kavu13@gmail.com>",
+    "Olivier Amblet <olivier@amblet.net>",
+    "Pascal Precht <pascal.precht@googlemail.com>",
+    "Roman Morozov <romo@ciklum.com>",
+    "Sahat Yalkabov <sakhat@gmail.com>",
+    "Vojta Jina <vojta.jina@gmail.com>",
+    "facboy <facboy@gmail.com>",
+    "jiverson <jiverson222@gmail.com>",
+    "joshrtay <joshrtay@gmail.com>",
+    "kolesnik <andrii_kolesnyk@epam.com>",
+    "Alexander Slansky <alexander@slansky.net>",
+    "m7r <martin@figuro-theater.de>",
+    "Alexey Kucherenko <alexei.kucherenko@gmail.com>",
+    "Chris Gross <cgross@texeltek.com>",
+    "Chris Wren <cthewren@gmail.com>"
+  ]
 }
