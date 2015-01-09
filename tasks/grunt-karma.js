@@ -37,18 +37,27 @@ module.exports = function(grunt) {
 
     // Allow for passing cli arguments to `client.args` using  `--grep=x`
     var args = parseArgs(process.argv.slice(2));
-    if (_.isArray(options.client.args)) {
-        options.client.args = options.client.args.concat(args);
-    } else {
-        options.client.args = args;
+    if (options.client && _.isArray(options.client.args)) {
+      args = options.client.args.concat(args);
     }
 
-    // Merge karma default options
-    _.defaults(options.client, {
+    // If arguments are provided we pass them to karma
+    if (args.length > 0) {
+      if (!options.client) {
+        options.client = {};
+      }
+      options.client.args = args;
+    }
+
+    //Only create client info if data is provided
+    if (options.client) {
+      // Merge karma default options
+      _.defaults(options.client, {
         args: [],
         useIframe: true,
         captureConsole: true
-    });
+      });
+    }
 
     var opts = _.cloneDeep(options);
     // Merge options onto data, with data taking precedence.
