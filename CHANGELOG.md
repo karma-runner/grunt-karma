@@ -1,3 +1,14 @@
+<a name"0.11.0"></a>
+## 0.11.0 (2015-05-28)
+
+
+#### Bug Fixes
+
+* Allow for karma.conf to be used correctly Now client config is only passed to ka ([15fee6f9](https://github.com/karma-runner/grunt-karma/commit/15fee6f9), closes [#119](https://github.com/karma-runner/grunt-karma/issues/119))
+* Update dependencies ([002926f4](https://github.com/karma-runner/grunt-karma/commit/002926f4))
+* Flatten files array. ([7fe05940](https://github.com/karma-runner/grunt-karma/commit/7fe05940), closes [#142](https://github.com/karma-runner/grunt-karma/issues/142)
+
+
 <a name="0.10.1"></a>
 ### 0.10.1 (2015-01-09)
 
@@ -29,7 +40,7 @@
 
 * Bump Karma depdency to ~0.9.2 (23a4f25)
 
-### 
+###
 
 * make configFile optional (cee07ab)
 
