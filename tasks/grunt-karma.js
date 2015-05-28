@@ -6,133 +6,131 @@
  * Licensed under the MIT license.
  */
 
-var runner = require('karma').runner;
-var server = require('karma').server;
-var path = require('path');
-var _ = require('lodash');
+var runner = require('karma').runner
+var server = require('karma').server
+var path = require('path')
+var _ = require('lodash')
 
-function finished(code){
-    return this(code === 0);
+function finished (code) {
+  return this(code === 0)
 }
-
 
 // Parse out all cli arguments in the form of `--arg=something` or
 // `-c=otherthing` and return the array.
-function parseArgs(args) {
-    return _.filter(args, function(arg) {
-        return arg.match(/^--?/);
-    });
+function parseArgs (args) {
+  return _.filter(args, function (arg) {
+    return arg.match(/^--?/)
+  })
 }
 
-
-module.exports = function(grunt) {
-
-  grunt.registerMultiTask('karma', 'run karma.', function() {
-    var done = this.async();
+module.exports = function (grunt) {
+  grunt.registerMultiTask('karma', 'run karma.', function () {
+    var done = this.async()
     var options = this.options({
       background: false,
       client: {}
-    });
+    })
 
     // Allow for passing cli arguments to `client.args` using  `--grep=x`
-    var args = parseArgs(process.argv.slice(2));
+    var args = parseArgs(process.argv.slice(2))
     if (options.client && _.isArray(options.client.args)) {
-      args = options.client.args.concat(args);
+      args = options.client.args.concat(args)
     }
 
     // If arguments are provided we pass them to karma
     if (args.length > 0) {
       if (!options.client) {
-        options.client = {};
+        options.client = {}
       }
-      options.client.args = args;
+      options.client.args = args
     }
 
-    //Only create client info if data is provided
+    // Only create client info if data is provided
     if (options.client) {
       // Merge karma default options
       _.defaults(options.client, {
         args: [],
         useIframe: true,
         captureConsole: true
-      });
+      })
     }
 
-    var opts = _.cloneDeep(options);
+    var opts = _.cloneDeep(options)
     // Merge options onto data, with data taking precedence.
-    var data = _.merge(opts, this.data);
+    var data = _.merge(opts, this.data)
 
     // But override the browsers array.
     if (data.browsers && this.data.browsers) {
-      data.browsers = this.data.browsers;
+      data.browsers = this.data.browsers
     }
 
     // Merge client.args
     if (this.data.client && _.isArray(this.data.client.args)) {
-        data.client.args = this.data.client.args.concat(options.client.args);
+      data.client.args = this.data.client.args.concat(options.client.args)
     }
 
     if (data.configFile) {
-      data.configFile = path.resolve(data.configFile);
+      data.configFile = path.resolve(data.configFile)
     }
 
     if (data.files || options.files) {
-      data.files = [].concat.apply(options.files || [], this.files.map(function(file) {
-        return file.src.map(function(src) {
+      data.files = [].concat.apply(options.files || [], this.files.map(function (file) {
+        return file.src.map(function (src) {
           var obj = {
             pattern: src
-          };
-
-          ['watched', 'served', 'included'].forEach(function(opt) {
+          }
+          var opts = ['watched', 'served', 'included']
+          opts.forEach(function (opt) {
             if (opt in file) {
-              obj[opt] = file[opt];
+              obj[opt] = file[opt]
             }
-          });
-          return obj;
-        });
-      }));
-      data.files = _.flatten(data.files);
+          })
+          return obj
+        })
+      }))
+
+      data.files = _.flatten(data.files)
     }
 
     // Allow the use of templates in preprocessors
     if (_.isPlainObject(data.preprocessors)) {
-      var preprocessors = {};
-      Object.keys(data.preprocessors).forEach(function(key) {
-        var value = data.preprocessors[key];
-        key = path.resolve(key);
-        key = grunt.template.process(key);
-        preprocessors[key] = value;
-      });
-      data.preprocessors = preprocessors;
+      var preprocessors = {}
+      Object.keys(data.preprocessors).forEach(function (key) {
+        var value = data.preprocessors[key]
+        key = path.resolve(key)
+        key = grunt.template.process(key)
+        preprocessors[key] = value
+      })
+      data.preprocessors = preprocessors
     }
 
-    //support `karma run`, useful for grunt watch
-    if (this.flags.run){
-      runner.run(data, finished.bind(done));
-      return;
+    // support `karma run`, useful for grunt watch
+    if (this.flags.run) {
+      runner.run(data, finished.bind(done))
+      return
     }
 
-    //allow karma to be run in the background so it doesn't block grunt
-    if (data.background){
+    // allow karma to be run in the background so it doesn't block grunt
+    if (data.background) {
       var backgroundArgs = {
         cmd: 'node',
-          args: process.execArgv.concat([
-              path.join(__dirname, '..', 'lib', 'background.js'),
-              JSON.stringify(data)
-          ])
-      };
-      var backgroundProcess = grunt.util.spawn(backgroundArgs, function(error) {
+        args: process.execArgv.concat([
+          path.join(__dirname, '..', 'lib', 'background.js'),
+          JSON.stringify(data)
+        ])
+      }
+      var backgroundProcess = grunt.util.spawn(backgroundArgs, function (error) {
         if (error) {
-          grunt.log.error(error);
+          grunt.log.error(error)
         }
-      });
-      process.on('exit', function() {
-        backgroundProcess.kill();
-      });
+      })
+      process.on('exit', function () {
+        backgroundProcess.kill()
+      })
 
-      done();
+      done()
     } else {
-      server.start(data, finished.bind(done));
+      server.start(data, finished.bind(done))
     }
-  });
-};
+  })
+}
