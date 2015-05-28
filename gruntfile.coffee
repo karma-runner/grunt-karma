@@ -123,7 +123,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-jscs-checker'
   grunt.loadNpmTasks 'grunt-npm'
   grunt.loadNpmTasks 'grunt-bump'
-  grunt.loadNpmTasks 'grunt-auto-release'
   grunt.loadNpmTasks 'grunt-conventional-changelog'
 
   grunt.registerTask 'test', ['karma:single', 'karma:config', 'karma:merge']
