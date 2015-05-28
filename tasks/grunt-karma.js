@@ -82,6 +82,7 @@ module.exports = function(grunt) {
           return obj;
         });
       }));
+      data.files = _.flatten(data.files);
     }
 
     // Allow the use of templates in preprocessors
