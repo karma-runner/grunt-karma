@@ -5,9 +5,6 @@
 #### Bug Fixes
 
 * Allow karma release candidate as peer dependency ([5cdb1844](https://github.com/karma-runner/grunt-karma/commit/5cdb1844))
-* Allow for karma.conf to be used correctly Now client config is only passed to ka ([15fee6f9](https://github.com/karma-runner/grunt-karma/commit/15fee6f9), closes [#119](https://github.com/karma-runner/grunt-karma/issues/119))
-* Update dependencies ([002926f4](https://github.com/karma-runner/grunt-karma/commit/002926f4))
-* Flatten files array. ([7fe05940](https://github.com/karma-runner/grunt-karma/commit/7fe05940), closes [#142](https://github.com/karma-runner/grunt-karma/issues/142), [#142](https://github.com/karma-runner/grunt-karma/issues/142))
 
 
 <a name"0.11.0"></a>
