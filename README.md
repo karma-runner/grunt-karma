@@ -59,7 +59,7 @@ directly in the Gruntfile:
 karma: {
   unit: {
     configFile: 'karma.conf.js',
-    runnerPort: 9999,
+    port: 9999,
     singleRun: true,
     browsers: ['PhantomJS'],
     logLevel: 'ERROR'
@@ -126,7 +126,7 @@ using the `options` property:
 karma: {
   options: {
     configFile: 'karma.conf.js',
-    runnerPort: 9999,
+    port: 9999,
     browsers: ['Chrome', 'Firefox']
   },
   continuous: {
@@ -140,7 +140,7 @@ karma: {
 ```
 
 In this example the `continuous` and `dev` targets will both use
-the `configFile` and `runnerPort` specified in the `options`. But
+the `configFile` and `port` specified in the `options`. But
 the `continuous` target will override the browser setting to use
 PhantomJS, and also run as a singleRun. The `dev` target will simply
 change the reporter to dots.
