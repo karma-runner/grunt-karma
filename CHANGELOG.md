@@ -1,3 +1,12 @@
+<a name"0.11.2"></a>
+### 0.11.2 (2015-06-29)
+
+
+#### Bug Fixes
+
+* ensure files passed to karma are flat ([6075d692](https://github.com/karma-runner/grunt-karma/commit/6075d692), closes [#142](https://github.com/karma-runner/grunt-karma/issues/142))
+
+
 <a name"0.11.1"></a>
 ### 0.11.1 (2015-06-19)
 
