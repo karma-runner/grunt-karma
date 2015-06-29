@@ -88,8 +88,7 @@ module.exports = function (grunt) {
           return obj
         })
       }))
-
-      data.files = _.flatten(data.files)
+      data.files = _.flattenDeep(data.files)
     }
 
     // Allow the use of templates in preprocessors
