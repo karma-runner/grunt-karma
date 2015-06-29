@@ -47,7 +47,7 @@
     "karma": "^0.12 || >= 0.13.0-rc.0"
   },
   "contributors": [
-    "dignifiedquire <friedel.ziegelmayer@gmail.com>",
+    "Dave Geddes <davidcgeddes@gmail.com>",
     "Michał Gołębiowski <m.goleb@gmail.com>",
     "dsuckau <denis.suckau@concepts-and-training.de>",
     "Christian Reed <christian@rgbfab.com>",
@@ -60,6 +60,7 @@
     "Max Riveiro <kavu13@gmail.com>",
     "Olivier Amblet <olivier@amblet.net>",
     "Pascal Precht <pascal.precht@googlemail.com>",
+    "Robin Hu <rhu@novus.com>",
     "Roman Morozov <romo@ciklum.com>",
     "Sahat Yalkabov <sakhat@gmail.com>",
     "Vojta Jina <vojta.jina@gmail.com>",
