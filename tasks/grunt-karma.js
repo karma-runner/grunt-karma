@@ -7,7 +7,7 @@
  */
 
 var runner = require('karma').runner
-var server = require('karma').server
+var Server = require('karma').Server
 var path = require('path')
 var _ = require('lodash')
 
@@ -129,7 +129,8 @@ module.exports = function (grunt) {
 
       done()
     } else {
-      server.start(data, finished.bind(done))
+      var server = new Server(data, finished.bind(done))
+      server.start()
     }
   })
 }

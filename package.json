@@ -36,7 +36,7 @@
     "grunt-conventional-changelog": "~1.2.2",
     "grunt-eslint": "^13.0.0",
     "grunt-npm": "0.0.2",
-    "karma": "~0.12.0",
+    "karma": "~0.13.0",
     "karma-chrome-launcher": "~0.1.2",
     "karma-firefox-launcher": "~0.1.3",
     "karma-mocha": "~0.1.3",
@@ -44,7 +44,7 @@
   },
   "peerDependencies": {
     "grunt": "0.4.x",
-    "karma": "^0.12 || >= 0.13.0-rc.0"
+    "karma": "^0.13.0 || >= 0.14.0-rc.0"
   },
   "contributors": [
     "Dave Geddes <davidcgeddes@gmail.com>",
