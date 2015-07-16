@@ -1,3 +1,13 @@
+<a name"0.12.0"></a>
+## 0.12.0 (2015-07-16)
+
+
+#### Bug Fixes
+
+* Updating grunt-karma to use the new API interface from Karma ([5d1881c9](https://github.com/karma-runner/grunt-karma/commit/5d1881c9))
+* ensure files passed to karma are flat ([6075d692](https://github.com/karma-runner/grunt-karma/commit/6075d692), closes [#142](https://github.com/karma-runner/grunt-karma/issues/142))
+
+
 <a name"0.11.2"></a>
 ### 0.11.2 (2015-06-29)
 
