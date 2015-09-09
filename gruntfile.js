@@ -55,8 +55,7 @@ module.exports = function (grunt) {
             token: process.env.GH_TOKEN
           },
           changelogOpts: {
-            preset: 'angular',
-            releaseCount: 0
+            preset: 'angular'
           }
         }
       }
@@ -68,7 +67,6 @@ module.exports = function (grunt) {
         commitFiles: ['package.json', 'CHANGELOG.md'],
         commitMessage: 'chore: release v%VERSION%',
         pushTo: 'upstream',
-        push: false,
         gitDescribeOptions: '| echo "beta-$(git rev-parse --short HEAD)"'
       }
     },
