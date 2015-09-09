@@ -1,3 +1,14 @@
+<a name="0.12.1"></a>
+## 0.12.1 (2015-09-09)
+
+
+### Bug Fixes
+
+* **task:** prevent `spawn ENAMETOOLONG` on Windows ([2b5e643](https://github.com/karma-runner/grunt-karma/commit/2b5e643))
+* Upgrade dependencies ([27abcda](https://github.com/karma-runner/grunt-karma/commit/27abcda))
+
+
+
 <a name"0.12.0"></a>
 ## 0.12.0 (2015-07-16)
 
