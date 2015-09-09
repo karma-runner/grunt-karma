@@ -36,6 +36,32 @@ module.exports = function (grunt) {
       }
     },
 
+    conventionalChangelog: {
+      release: {
+        options: {
+          changelogOpts: {
+            preset: 'angular'
+          }
+        },
+        src: 'CHANGELOG.md'
+      }
+    },
+
+    conventionalGithubReleaser: {
+      release: {
+        options: {
+          auth: {
+            type: 'oauth',
+            token: process.env.GH_TOKEN
+          },
+          changelogOpts: {
+            preset: 'angular',
+            releaseCount: 0
+          }
+        }
+      }
+    },
+
     bump: {
       options: {
         updateConfigs: ['pkg'],
@@ -104,8 +130,9 @@ module.exports = function (grunt) {
     grunt.task.run([
       'npm-contributors',
       'bump:' + (type || 'patch') + ':bump-only',
-      'changelog',
+      'conventionalChangelog',
       'bump-commit',
+      'conventionalGithubReleaser',
       'npm-publish'
     ])
   })
