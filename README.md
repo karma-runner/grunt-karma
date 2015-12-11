@@ -13,9 +13,10 @@ old releases of grunt-karma.
 
 ## Getting Started
 From the same directory as your project's Gruntfile and package.json, install
-this plugin with the following command:
+karma and grunt-karma with the following commands:
 
 ```bash
+$ npm install karma --save-dev
 $ npm install grunt-karma --save-dev
 ```
 
