@@ -16,3 +16,5 @@ before_script:
 
 script:
   - grunt
+
+sudo: false
