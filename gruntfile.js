@@ -87,6 +87,16 @@ module.exports = function (grunt) {
           }
         ]
       },
+      background: {
+        background: true,
+        files: [
+          {
+            src: 'node_modules/expect.js/index.js'
+          }, {
+            src: 'test/**/*.js'
+          }
+        ]
+      },
       config: {
         configFile: 'karma.conf.js',
         singleRun: true
@@ -114,6 +124,11 @@ module.exports = function (grunt) {
       tests: {
         files: 'test/**/*.js',
         tasks: ['karma:dev:run']
+      },
+      bgtest: {
+        // This is just to stop node exiting
+        files: 'test/**/*.js',
+        tasks: []
       }
     }
   })
@@ -123,6 +138,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', ['karma:single', 'karma:config', 'karma:merge'])
   grunt.registerTask('default', ['eslint', 'test'])
+  grunt.registerTask('bgtest', ['karma:background', 'watch:bgtest'])
 
   grunt.registerTask('release', 'Bump the version and publish to npm.', function (type) {
     grunt.task.run([
