@@ -23,10 +23,11 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "lodash": "^3.10.1"
+    "lodash": "^4.2.1"
   },
   "devDependencies": {
     "eslint": "^1.3.1",
+    "eslint-plugin-standard": "^1.1.0",
     "eslint-config-standard": "^4.3.1",
     "eslint-plugin-react": "^3.3.1",
     "expect.js": "^0.3.1",
@@ -41,11 +42,14 @@
     "karma-chrome-launcher": "^0.2.0",
     "karma-firefox-launcher": "^0.1.3",
     "karma-mocha": "^0.2.0",
-    "load-grunt-tasks": "^3.2.0"
+    "load-grunt-tasks": "^3.2.0",
+    "mocha": "2.4.5"
   },
   "peerDependencies": {
     "grunt": "0.4.x",
-    "karma": "^0.13.0 || >= 0.14.0-rc.0"
+    "karma": "^0.13.0 || >= 0.14.0-rc.0",
+    "mocha": "2.4.5",
+    "eslint-plugin-standard": "^1.1.0"
   },
   "contributors": [
     "Dave Geddes <davidcgeddes@gmail.com>",
