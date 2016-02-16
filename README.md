@@ -236,8 +236,8 @@ $ grunt karma:dev watch --grep=mypattern
 ## License
 MIT License
 
-[karma-config-file]: http://karma-runner.github.com/0.12/config/configuration-file.html
-[karma-config-files]: http://karma-runner.github.io/0.12/config/files.html
+[karma-config-file]: http://karma-runner.github.com/latest/config/configuration-file.html
+[karma-config-files]: http://karma-runner.github.io/latest/config/files.html
 [grunt-config-files]: http://gruntjs.com/configuring-tasks#files
 [grunt-contrib-watch]: https://github.com/gruntjs/grunt-contrib-watch
 [PhantomJS]: http://phantomjs.org/
