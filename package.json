@@ -44,7 +44,7 @@
     "load-grunt-tasks": "^3.2.0"
   },
   "peerDependencies": {
-    "grunt": "0.4.x",
+    "grunt": ">=0.4.x",
     "karma": "^0.13.0 || >= 0.14.0-rc.0"
   },
   "contributors": [
