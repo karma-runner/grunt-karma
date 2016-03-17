@@ -49,14 +49,15 @@
   },
   "contributors": [
     "Dave Geddes <davidcgeddes@gmail.com>",
+    "Julian Motz <me@julianmotz.com>",
     "Michał Gołębiowski <m.goleb@gmail.com>",
     "dsuckau <denis.suckau@concepts-and-training.de>",
-    "Christian Reed <christian@rgbfab.com>",
     "Christoph Kraemer <chr.kraemer@sap.com>",
     "Daniel Herman <daniel.c.herman@gmail.com>",
     "Eddie Monge <eddie@eddiemonge.com>",
     "James Ford <jford@psyked.co.uk>",
     "Jonas Pommerening <jonas.pommerening@gmail.com>",
+    "Julian <me@julianmotz.com>",
     "Luis Almeida <lmg.almeida@gmail.com>",
     "Matt Dean <matt@trabian.com>",
     "Max Riveiro <kavu13@gmail.com>",
@@ -66,6 +67,7 @@
     "Robin Hu <rhu@novus.com>",
     "Roman Morozov <romo@ciklum.com>",
     "Sahat Yalkabov <sakhat@gmail.com>",
+    "Vlad Filippov <vlad.filippov@gmail.com>",
     "Vojta Jina <vojta.jina@gmail.com>",
     "enigmak <redingerkai@gmail.com>",
     "facboy <facboy@gmail.com>",
@@ -76,6 +78,7 @@
     "m7r <martin@figuro-theater.de>",
     "Alexey Kucherenko <alexei.kucherenko@gmail.com>",
     "Chris Gross <cgross@texeltek.com>",
-    "Chris Wren <cthewren@gmail.com>"
+    "Chris Wren <cthewren@gmail.com>",
+    "Christian Reed <christian@rgbfab.com>"
   ]
 }
