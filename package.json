@@ -46,7 +46,7 @@
     "mocha": "^2.4.5"
   },
   "peerDependencies": {
-    "grunt": ">=0.4.x",
+    "grunt": ">=0.4.0",
     "karma": "^0.13.0 || >= 0.14.0-rc.0"
   },
   "contributors": [
