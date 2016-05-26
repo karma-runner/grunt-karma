@@ -1,3 +1,14 @@
+<a name="2.0.0"></a>
+# 2.0.0 (2016-05-26)
+
+
+### Bug Fixes
+
+* handle basePath option for preprocessors paths ([1a45103](https://github.com/karma-runner/grunt-karma/commit/1a45103)), closes [#146](https://github.com/karma-runner/grunt-karma/issues/146)
+* Make background option work with grunt tasks written in CoffeeScript ([52174ef](https://github.com/karma-runner/grunt-karma/commit/52174ef)), closes [#174](https://github.com/karma-runner/grunt-karma/issues/174)
+
+
+
 <a name="1.0.0"></a>
 # 1.0.0 (2016-05-03)
 
