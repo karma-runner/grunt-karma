@@ -49,9 +49,7 @@ module.exports = function (grunt) {
     if (options.client) {
       // Merge karma default options
       _.defaults(options.client, {
-        args: [],
-        useIframe: true,
-        captureConsole: true
+        args: []
       })
     }
 
