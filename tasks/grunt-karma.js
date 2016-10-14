@@ -116,6 +116,20 @@ module.exports = function (grunt) {
           path.join(__dirname, '..', 'lib', 'background.js')
       )
 
+      if (data.onBackgroundMessage && typeof data.onBackgroundMessage !== 'function') {
+        grunt.log.error('onBackgroundMessage must be a function')
+      }
+
+      if (data.onBackgroundStart) {
+        if (typeof data.onBackgroundStart !== 'function') {
+          grunt.log.error('onBackgroundStart must be a function')
+        } else {
+          data.onBackgroundStart.call(null, {
+            pid: backgroundProcess.pid
+          })
+        }
+      }
+
       backgroundProcess.on('close', function (code) {
         var error = code
         if (error) {
@@ -123,8 +137,20 @@ module.exports = function (grunt) {
         }
       })
 
+      backgroundProcess.on('message', function (msgFromChild) {
+        if (data.onBackgroundMessage) {
+          // Add child process id to message object
+          // for reference
+          msgFromChild.pid = backgroundProcess.pid
+          data.onBackgroundMessage.call(null, msgFromChild)
+        }
+      })
+
       process.on('exit', function () {
         backgroundProcess.kill()
+        if (data.onBackgroundMessage) {
+          data.onBackgroundMessage.call(null, 'exit')
+        }
       })
 
       backgroundProcess.send({ config: data })

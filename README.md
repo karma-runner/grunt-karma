@@ -232,6 +232,52 @@ You can pass arbitrary `client.args` through the commandline like this:
 $ grunt karma:dev watch --grep=mypattern
 ```
 
+### Karma Server in a background process
+```js
+karma: {
+  unit: {
+    background: true,
+    onBackgroundStart: function(data) {
+      // data.pid returned -- background process id
+      // Called with karma background process starts
+    },
+    backgroundServerEvents: ['run_complete', 'browser_error'], // <--- listen to karma server events
+    onBackgroundMessage: function(response) {
+      // Karma server events returned
+      // See http://karma-runner.github.io/1.0/dev/public-api.html
+      if (response.event === 'run_complete') {
+         console.log(response.pid);         // <--- background process id
+         console.log(response.data[0]);     // <--- 'browsers' data from 'run_complete' event
+         console.log(response.data[1]);     // <--- 'results' data from 'run_complete' event
+      }
+    }
+  }
+}
+```
+The `background` option will tell grunt to run karma in a child process
+so it doesn't block subsequent grunt tasks.
+
+The `onBackgroundStart` option is a callback function called when the child 
+process is created. It only returns the background process id.
+
+The `backgroundServerEvents` option is an array of karma server events to 
+have returned to the parent process via the `onBackgroundMessage` callback. 
+Examples include `['browser_register', 'browser_error', 'run_complete']`. 
+See the Karma [public api](http://karma-runner.github.io/1.0/dev/public-api.html)
+for a full list of events.
+
+The `onBackgroundMessage` option is a callback function called that receives 
+karma server events passed in the 'backgroundServerEvents' array. The response
+object has the following properties:
+
+```js
+ {
+   pid: 1234,                   // <--- background process id
+   event: 'run_complete',       // <--- event name 
+   data: [browsers, results]    // <--- Array of arguments returned from event
+ }
+
+```
 
 ## License
 MIT License
