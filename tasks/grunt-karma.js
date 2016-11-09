@@ -95,7 +95,7 @@ module.exports = function (grunt) {
       Object.keys(data.preprocessors).forEach(function (key) {
         var value = data.preprocessors[key]
         if (options.basePath) {
-          key = options.basePath + key
+          key = path.join(options.basePath, key)
         }
         key = path.resolve(key)
         key = grunt.template.process(key)
