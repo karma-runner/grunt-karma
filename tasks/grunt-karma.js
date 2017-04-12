@@ -23,6 +23,19 @@ function parseArgs (args) {
   })
 }
 
+/**
+ * Customizes target/source merging with lodash merge.
+ *
+ * @param  {Object} target
+ * @param  {Object} source
+ * @return {Object}
+ */
+function mergeCustomizer (target, source) {
+  if (Array.isArray(target)) {
+    return target.concat(source)
+  }
+}
+
 module.exports = function (grunt) {
   grunt.registerMultiTask('karma', 'run karma.', function () {
     var done = this.async()
@@ -55,7 +68,7 @@ module.exports = function (grunt) {
 
     var opts = _.cloneDeep(options)
     // Merge options onto data, with data taking precedence.
-    var data = _.merge(opts, this.data)
+    var data = _.mergeWith(opts, this.data, mergeCustomizer)
 
     // But override the browsers array.
     if (data.browsers && this.data.browsers) {
