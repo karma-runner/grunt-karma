@@ -1,11 +1,10 @@
 sudo: false
 language: node_js
 node_js:
+  - 6
+  - 8
+  - 10
   - stable
-  - 5
-  - 4
-  - "0.12"
-  - "0.10"
 
 # Make sure we have new NPM.
 before_install:
