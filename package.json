@@ -23,7 +23,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "dependencies": {
-    "lodash": "^4.13.1"
+    "lodash": "^4.17.10"
   },
   "devDependencies": {
     "eslint": "^2.13.1",
