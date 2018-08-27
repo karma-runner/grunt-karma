@@ -85,16 +85,6 @@ module.exports = function (grunt) {
           }
         ]
       },
-      background: {
-        background: true,
-        files: [
-          {
-            src: 'node_modules/expect.js/index.js'
-          }, {
-            src: 'test/**/*.js'
-          }
-        ]
-      },
       config: {
         configFile: 'karma.conf.js',
         singleRun: true
@@ -106,6 +96,16 @@ module.exports = function (grunt) {
         singleRun: true,
         files: [
           {
+            src: 'test/**/*.js'
+          }
+        ]
+      },
+      background: {
+        background: true,
+        files: [
+          {
+            src: 'node_modules/expect.js/index.js'
+          }, {
             src: 'test/**/*.js'
           }
         ]
@@ -134,7 +134,12 @@ module.exports = function (grunt) {
   grunt.loadTasks('tasks')
   require('load-grunt-tasks')(grunt)
 
-  grunt.registerTask('test', ['eslint', 'karma:single', 'karma:config', 'karma:merge'])
+  grunt.registerTask('test', [
+    'eslint',
+    'karma:single',
+    'karma:config',
+    'karma:merge'
+  ])
   grunt.registerTask('default', ['test'])
   grunt.registerTask('bgtest', ['karma:background', 'watch:bgtest'])
 
