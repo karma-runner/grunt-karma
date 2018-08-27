@@ -17,7 +17,7 @@
     "TDD"
   ],
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt"
   },
   "author": "Dave Geddes",
   "license": "MIT",

@@ -136,8 +136,8 @@ module.exports = function (grunt) {
   grunt.loadTasks('tasks')
   require('load-grunt-tasks')(grunt)
 
-  grunt.registerTask('test', ['karma:single', 'karma:config', 'karma:merge'])
-  grunt.registerTask('default', ['eslint', 'test'])
+  grunt.registerTask('test', ['eslint', 'karma:single', 'karma:config', 'karma:merge'])
+  grunt.registerTask('default', ['test'])
   grunt.registerTask('bgtest', ['karma:background', 'watch:bgtest'])
 
   grunt.registerTask('release', 'Bump the version and publish to npm.', function (type) {
