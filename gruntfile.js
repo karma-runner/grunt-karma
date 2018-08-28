@@ -100,6 +100,15 @@ module.exports = function (grunt) {
           }
         ]
       },
+      flatten: {
+        options: {
+          files: [
+            [['node_modules/expect.js/index.js']],
+            [[['test/**/*.js']]]
+          ]
+        },
+        singleRun: true
+      },
       background: {
         background: true,
         files: [
@@ -138,7 +147,8 @@ module.exports = function (grunt) {
     'eslint',
     'karma:single',
     'karma:config',
-    'karma:merge'
+    'karma:merge',
+    'karma:flatten'
   ])
   grunt.registerTask('default', ['test'])
   grunt.registerTask('bgtest', ['karma:background', 'watch:bgtest'])
