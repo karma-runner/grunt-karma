@@ -71,27 +71,29 @@ module.exports = function (grunt) {
       data.configFile = path.resolve(data.configFile)
     }
 
-    if (this.files.length || options.files) {
-      data.files = [].concat.apply(
-        // For the 'files' option, we support nested arrays as a convenient
-        // way to specify files without needing the user to concat or
-        // flatten them ahead of time.
-        _.flattenDeep(options.files || []),
-        this.files.map(function (file) {
-          return file.src.map(function (src) {
-            var obj = {
-              pattern: src
+    // Combines both sets of files. The order should be:
+    // - first, values from options.files,
+    // - then, values from this.files.
+    if (options.files || this.files.length) {
+      // For our 'files' option, we support arbitrarily nested arrays,
+      // as a convenient way to specify files without the user needing to
+      // concat or flatten anything within their Gruntfile.
+      data.files = _.flattenDeep(options.files || [])
+      // The 'files' task data expanded by Grunt internally produces
+      // a structure that is exactly 2 levels deep.
+      this.files.forEach((file) => {
+        file.src.forEach((src) => {
+          let obj = {
+            pattern: src
+          };
+          ['watched', 'served', 'included'].forEach((opt) => {
+            if (opt in file) {
+              obj[opt] = file[opt]
             }
-            var opts = ['watched', 'served', 'included']
-            opts.forEach(function (opt) {
-              if (opt in file) {
-                obj[opt] = file[opt]
-              }
-            })
-            return obj
           })
+          data.files.push(obj)
         })
-      )
+      })
     }
 
     // Allow the use of templates in preprocessors
