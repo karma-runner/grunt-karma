@@ -1,3 +1,21 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/karma-runner/grunt-karma/compare/v2.0.0...v3.0.0) (2018-09-08)
+
+
+### Bug Fixes
+
+* ensure proper path format ([9314248](https://github.com/karma-runner/grunt-karma/commit/9314248))
+* Remove hardcoded useIframe & captureConsole opts ([33386b3](https://github.com/karma-runner/grunt-karma/commit/33386b3)), closes [#165](https://github.com/karma-runner/grunt-karma/issues/165) [#166](https://github.com/karma-runner/grunt-karma/issues/166)
+* **deps:** update lodash version to address npm audit warning ([1182766](https://github.com/karma-runner/grunt-karma/commit/1182766)), closes [#259](https://github.com/karma-runner/grunt-karma/issues/259)
+* **deps:** Update test to use karma 3.0.0 ([19551fd](https://github.com/karma-runner/grunt-karma/commit/19551fd)), closes [#261](https://github.com/karma-runner/grunt-karma/issues/261) [#251](https://github.com/karma-runner/grunt-karma/issues/251)
+
+
+### Features
+
+* upgrade dependencies ([a911ca1](https://github.com/karma-runner/grunt-karma/commit/a911ca1)), closes [#178](https://github.com/karma-runner/grunt-karma/issues/178) [#175](https://github.com/karma-runner/grunt-karma/issues/175)
+
+
+
 <a name="2.0.0"></a>
 # 2.0.0 (2016-05-26)
 
