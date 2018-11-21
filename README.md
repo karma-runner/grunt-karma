@@ -8,7 +8,7 @@
 
 > Grunt plugin for [Karma](https://github.com/karma-runner/karma)
 
-This current version uses `karma@^3.x.x`. For using older versions see the
+This current version uses `karma@^3.0.0`. For using older versions see the
 old releases of grunt-karma.
 
 ## Getting Started
