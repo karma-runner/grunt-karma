@@ -48,8 +48,8 @@
     "mocha": "^3.4.2"
   },
   "peerDependencies": {
-    "grunt": ">=0.4.x || ^1.0.0",
-    "karma": "^3.0.0"
+    "grunt": ">=0.4.x",
+    "karma": "^3.0.0 || ^4.0.0"
   },
   "contributors": [
     "Dave Geddes <davidcgeddes@gmail.com>",
