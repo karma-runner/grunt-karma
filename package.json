@@ -54,12 +54,12 @@
   "contributors": [
     "Dave Geddes <davidcgeddes@gmail.com>",
     "Timo Tijhof <krinklemail@gmail.com>",
-    "Michał Gołębiowski-Owczarek <m.goleb@gmail.com>",
-    "Julian Motz <me@julianmotz.com>",
     "johnjbarton <johnjbarton@johnjbarton.com>",
+    "Julian Motz <me@julianmotz.com>",
+    "Michał Gołębiowski-Owczarek <m.goleb@gmail.com>",
+    "XhmikosR <xhmikosr@gmail.com>",
     "Mark Ethan Trostler <mark@zzo.com>",
     "dsuckau <denis.suckau@concepts-and-training.de>",
-    "Eddie Monge <eddie@eddiemonge.com>",
     "Greenkeeper <support@greenkeeper.io>",
     "James Ford <jford@psyked.co.uk>",
     "James Forrester <jforrester@wikimedia.org>",
@@ -95,6 +95,7 @@
     "Chris Wren <cthewren@gmail.com>",
     "Christian Reed <christian@rgbfab.com>",
     "Christoph Kraemer <chr.kraemer@sap.com>",
-    "Daniel Herman <daniel.c.herman@gmail.com>"
+    "Daniel Herman <daniel.c.herman@gmail.com>",
+    "Eddie Monge <eddie@eddiemonge.com>"
   ]
 }
