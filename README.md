@@ -3,7 +3,7 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/karma-runner/grunt-karma)
  [![npm version](https://img.shields.io/npm/v/grunt-karma.svg?style=flat-square)](https://www.npmjs.com/package/grunt-karma) [![npm downloads](https://img.shields.io/npm/dm/grunt-karma.svg?style=flat-square)](https://www.npmjs.com/package/grunt-karma)
 
-[![Build Status](https://img.shields.io/travis/karma-runner/grunt-karma/master.svg?style=flat-square)](https://travis-ci.org/karma-runner/grunt-karma) [![Dependency Status](https://img.shields.io/david/karma-runner/grunt-karma.svg?style=flat-square)](https://david-dm.org/karma-runner/grunt-karma) [![devDependency Status](https://img.shields.io/david/dev/karma-runner/grunt-karma.svg?style=flat-square)](https://david-dm.org/karma-runner/grunt-karma#info=devDependencies)
+[![Build Status](https://img.shields.io/travis/karma-runner/grunt-karma/master.svg?style=flat-square)](https://travis-ci.org/karma-runner/grunt-karma) [![Dependency Status](https://img.shields.io/david/karma-runner/grunt-karma.svg?style=flat-square)](https://david-dm.org/karma-runner/grunt-karma) [![devDependency Status](https://img.shields.io/david/dev/karma-runner/grunt-karma.svg?style=flat-square)](https://david-dm.org/karma-runner/grunt-karma?type=dev)
 
 
 > Grunt plugin for [Karma](https://github.com/karma-runner/karma)
