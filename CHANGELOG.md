@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/karma-runner/grunt-karma/compare/v3.0.2...v4.0.0) (2020-04-14)
+
+
+### chore
+
+* **ci:** support semanitic-release ([#277](https://github.com/karma-runner/grunt-karma/issues/277)) ([caba218](https://github.com/karma-runner/grunt-karma/commit/caba2181e1541b5461e13ee1c4e09b6064e73465))
+
+
+### BREAKING CHANGES
+
+* **ci:** drop support for nodejs <8
+
 <a name="3.0.2"></a>
 ## [3.0.2](https://github.com/karma-runner/grunt-karma/compare/v3.0.1...v3.0.2) (2019-04-09)
 
