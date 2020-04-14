@@ -1,13 +1,20 @@
 language: node_js
 node_js:
-  - 6
-  - 8
   - 10
-  - stable
+  - 12
 
 before_install:
   - npm config set loglevel warn
 
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+services:
+  - xvfb
+
+script:
+  - commitlint-travis
+  - npm test
+
+after_success:
+  # run automated release process with semantic-release
+  - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_EVENT_TYPE" == "push" && "$TRAVIS_NODE_VERSION" == "12" ]]; then
+      semantic-release;
+    fi;
