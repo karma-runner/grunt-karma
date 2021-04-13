@@ -8,6 +8,7 @@
 
 var runner = require('karma').runner
 var Server = require('karma').Server
+var parseConfig = require('karma').config.parseConfig
 var path = require('path')
 var _ = require('lodash')
 
@@ -137,8 +138,21 @@ module.exports = function (grunt) {
       backgroundProcess.send({ config: data })
       done()
     } else {
-      var server = new Server(data, finished.bind(done))
-      server.start()
+      var parsedConfig = parseConfig(
+        data.configFile,
+        data,
+        {promiseConfig: true, throwErrors: true}
+      )
+      if (parsedConfig.then) {
+        parsedConfig.then(function (config) {
+          var server = new Server(config, finished.bind(done))
+          server.start()
+        })
+      } else {
+        // Support: Karma < 6
+        var server = new Server(data, finished.bind(done))
+        server.start()
+      }
     }
   })
 }
