@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/karma-runner/grunt-karma/compare/v4.0.0...v4.0.1) (2021-05-11)
+
+
+### Bug Fixes
+
+* **karma:** use recommended parseConfig pattern for Karma 6 ([#297](https://github.com/karma-runner/grunt-karma/issues/297)) ([a38d9a9](https://github.com/karma-runner/grunt-karma/commit/a38d9a9d896ed8ef6441a17094350a5f3bc2ea2d))
+
 # [4.0.0](https://github.com/karma-runner/grunt-karma/compare/v3.0.2...v4.0.0) (2020-04-14)
 
 
