@@ -57,7 +57,7 @@
   },
   "peerDependencies": {
     "grunt": ">=0.4.x",
-    "karma": "^4.0.0 || ^5.0.0"
+    "karma": "^4.0.0 || ^5.0.0 || ^6.0.0"
   },
   "commitlint": {
     "extends": [
