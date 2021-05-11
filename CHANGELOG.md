@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/karma-runner/grunt-karma/compare/v4.0.1...v4.0.2) (2021-05-11)
+
+
+### Bug Fixes
+
+* **karma:** accept karma 6.x in peerDependencies ([#303](https://github.com/karma-runner/grunt-karma/issues/303)) ([fe01a67](https://github.com/karma-runner/grunt-karma/commit/fe01a67d5d85748f2bbe62a96e2ff52e0d2968d7))
+
 ## [4.0.1](https://github.com/karma-runner/grunt-karma/compare/v4.0.0...v4.0.1) (2021-05-11)
 
 
