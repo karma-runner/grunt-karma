@@ -87,7 +87,7 @@ module.exports = function (grunt) {
           let obj = {
             pattern: src
           };
-          ['watched', 'served', 'included'].forEach((opt) => {
+          ['watched', 'served', 'included', 'type'].forEach((opt) => {
             if (opt in file) {
               obj[opt] = file[opt]
             }
